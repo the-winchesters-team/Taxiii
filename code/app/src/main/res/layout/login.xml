@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#34A2F1">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fontFamily="@font/kaushan_script"
+        android:gravity="top|center_horizontal"
+        android:paddingTop="100px"
+        android:paddingRight="50px"
+        android:text="@string/app_name"
+        android:textColor="#FFFFFF"
+        android:textSize="200px"
+        tools:layout_editor_absoluteX="174dp"
+        tools:layout_editor_absoluteY="354dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

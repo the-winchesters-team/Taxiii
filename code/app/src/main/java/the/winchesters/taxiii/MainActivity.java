@@ -17,6 +17,6 @@ public class MainActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         Objects.requireNonNull(getSupportActionBar()).hide();
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.login);
     }
 }
