@@ -9,6 +9,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.MappedSuperclass;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -16,12 +18,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity
-@Table(name = "\"user\"")
+//@MappedSuperclass
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
+@Table(name="\"user\"")
+@Inheritance
 public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,13 +39,12 @@ public class User {
 	private LocalDate creationDate;
 	private String last_known_location;
 	private String email;
-    @Enumerated(EnumType.STRING)
-    private CityEnum city;
-    @Enumerated(EnumType.STRING)
-    private RoleEnum role;
-    private boolean online ;
-    private boolean verified ;
-    private String profilePic ;
-	
+	@Enumerated(EnumType.STRING)
+	private CityEnum city;
+	@Enumerated(EnumType.STRING)
+	private RoleEnum role;
+	private boolean online;
+	private boolean verified;
+	private String profilePic;
 
 }
