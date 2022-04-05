@@ -17,6 +17,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import ma.ensias.winchesters.security.ApplicationUserRole;
 
 //@MappedSuperclass
 @Getter
@@ -42,7 +43,7 @@ public class User {
 	@Enumerated(EnumType.STRING)
 	private CityEnum city;
 	@Enumerated(EnumType.STRING)
-	private RoleEnum role;
+	private ApplicationUserRole role;
 	private boolean online;
 	private boolean verified;
 	private String profilePic;
