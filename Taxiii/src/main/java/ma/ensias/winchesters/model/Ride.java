@@ -32,7 +32,7 @@ public class Ride {
 //	private Review review; 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "client_id")
-	private Ride ride;
+	private Client client;
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "taxi_driver_id")
 	private TaxiDriver taxiDriver;
