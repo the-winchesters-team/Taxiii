@@ -25,9 +25,10 @@
         android:layout_marginTop="82dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2"
-        app:layout_constraintVertical_bias="0.419"
+        app:layout_constraintVertical_bias="0.281"
         app:srcCompat="@drawable/client" />
 
     <TextView
@@ -37,10 +38,14 @@
         android:text="Taxi Driver"
         android:textColor="@color/white"
         android:textSize="30sp"
+        android:fontFamily="@font/inter_black"
         app:layout_constraintBottom_toTopOf="@+id/imageView3"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.511"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        app:layout_constraintVertical_bias="0.284" />
+
 
     <TextView
         android:id="@+id/textView5"
@@ -48,21 +53,23 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="37dp"
         android:text="Client"
+        android:fontFamily="@font/inter_black"
         android:textColor="@color/white"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
-
-
+        app:layout_constraintTop_toBottomOf="@+id/imageView3"
+        app:layout_constraintVertical_bias="0.046" />
 
     <TextView
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Sign up as"
-        android:textSize="50sp"android:textColor="@color/white"
+        android:fontFamily="@font/kaushan_script"
+        android:textSize="50sp"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/imageView2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
