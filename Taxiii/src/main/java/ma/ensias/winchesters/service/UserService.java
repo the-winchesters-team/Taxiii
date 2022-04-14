@@ -16,19 +16,23 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 @Service
 public class UserService {
     private final UserRepository userRepository;
-
-    private final PasswordEncoder passwordEncoder;
+    private final ClientService clientService;
     private final AuthenticationFacade authenticationFacade;
+    private final TaxiDriverService taxiDriverService;
+    private final PasswordEncoder passwordEncoder;
 
 
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, AuthenticationFacade authenticationFacade) {
+    public UserService(UserRepository userRepository, ClientService clientService, AuthenticationFacade authenticationFacade, PasswordEncoder passwordEncoder, TaxiDriverService taxiDriverService, PasswordEncoder passwordEncoder1) {
         this.userRepository = userRepository;
-        this.passwordEncoder = passwordEncoder;
+        this.clientService = clientService;
         this.authenticationFacade = authenticationFacade;
+        this.taxiDriverService = taxiDriverService;
+        this.passwordEncoder = passwordEncoder1;
     }
 
     public UserResponseDto getUser() {
@@ -70,7 +74,7 @@ public class UserService {
             throw new IllegalStateException("password must contain ..TODO.....");
 
         User user = new User();
-        user.setPassword(passwordEncoder.encode(password));
+        user.setPassword(passwordEncoder.encode(signUpForm.getPassword()));
         user.setFirstName(signUpForm.getFirstName());
         user.setLastName(signUpForm.getLastName());
         user.setUsername(signUpForm.getUsername());
@@ -79,7 +83,18 @@ public class UserService {
         user.setEmail(signUpForm.getEmail());
         user.setRole(ApplicationUserRole.fromName(signUpForm.getRole()));
 
-        return EntityToDto.userToUserResponseDto(userRepository.save(user));
+        switch (Objects.requireNonNull(ApplicationUserRole.fromName(signUpForm.getRole()))){
+            case TAXI_DRIVER -> {
+                return taxiDriverService.signUp(user);
+            }
+            case CLIENT -> {
+                return clientService.signUp(user);
+            }
+            case ADMIN -> {
+                //TODO
+            }
+        }
+        return new UserResponseDto();
     }
 
     @Transactional
