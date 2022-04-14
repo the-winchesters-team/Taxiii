@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Taxiii</string>
+    <string name="password_hint">Password</string>
+    <string name="forgot_password">Forgot password ?</string>
+    <string name="email_hint">Email</string>
+    <string name="sign_in_hint">Sign in</string>
+    <string name="sign_in_text">Sign in</string>
+    <string name="login_social_hint">Or login with your socials</string>
 </resources>
