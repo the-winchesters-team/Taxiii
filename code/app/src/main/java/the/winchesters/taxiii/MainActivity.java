@@ -1,11 +1,11 @@
 package the.winchesters.taxiii;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Objects;
 import java.util.Timer;
@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                Intent intent  = new Intent(MainActivity.this, login.class);
+                Intent intent  = new Intent(MainActivity.this, LoginFormActivity.class);
                 startActivity(intent);
                 finish();
 
