@@ -1,22 +1,25 @@
-version: '3.1'
+version: '3.2'
 
 services:
-
   db:
     image: postgres
-    restart: always
     environment:
       POSTGRES_PASSWORD: 12345678
     volumes:
-      -db_data:/db
+      - type: volume
+        source: db-data
+        target: /db
 
   adminer:
     image: adminer
-    restart: always
+    depends_on:
+      - db
     ports:
       - 8010:8080
   
   taxiii-backend:
     build: ./Taxiii
     ports:
-      -8020:8080
+      - 8020:8080
+volumes:
+  db-data:
