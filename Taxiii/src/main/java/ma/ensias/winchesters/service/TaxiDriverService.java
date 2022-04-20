@@ -16,6 +16,12 @@ public class TaxiDriverService {
         this.taxiDriverRepository = taxiDriverRepository;
     }
 
+    public TaxiDriver getTaxiDriver(String username) {
+        return taxiDriverRepository.findByUsername(username).orElseThrow(
+                ()-> new IllegalStateException(String.format("taxi driver with username %s not found",username))
+        );
+    }
+
     public UserResponseDto signUp(User user) {
         TaxiDriver taxiDriver = new TaxiDriver(user);
         return EntityToDto.userToUserResponseDto(taxiDriverRepository.save(taxiDriver));
