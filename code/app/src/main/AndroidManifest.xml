@@ -8,9 +8,10 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Taxiii">
+        android:theme="@style/Theme.Taxiii"
+        android:usesCleartextTraffic="true">
         <activity
-            android:name=".loginForm"
+            android:name=".LoginFormActivity"
             android:exported="false" />
         <activity
             android:name=".login_pick_role"
@@ -33,4 +34,6 @@
             android:resource="@array/preloaded_fonts" />
     </application>
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 </manifest>
