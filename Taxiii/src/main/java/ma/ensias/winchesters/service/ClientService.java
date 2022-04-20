@@ -20,4 +20,10 @@ public class ClientService {
         Client client = new Client(user);
         return EntityToDto.userToUserResponseDto(clientRepository.save(client));
     }
+
+    public Client getClient(String username) {
+        return clientRepository.findByUsername(username).orElseThrow(
+                ()-> new IllegalStateException(String.format("client with username %s not found",username))
+        );
+    }
 }
