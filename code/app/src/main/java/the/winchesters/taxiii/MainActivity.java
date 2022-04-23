@@ -11,6 +11,8 @@ import java.util.Objects;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import the.winchesters.taxiii.activity.TaxiDriverMapActivity;
+
 public class MainActivity extends AppCompatActivity {
     Timer timer;
     @Override
@@ -25,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                Intent intent  = new Intent(MainActivity.this, LoginFormActivity.class);
+                Intent intent  = new Intent(MainActivity.this, TaxiDriverMapActivity.class);
                 startActivity(intent);
                 finish();
 
