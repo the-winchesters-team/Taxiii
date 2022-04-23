@@ -1,9 +1,7 @@
 package the.winchesters.taxiii;
 
-import static android.app.PendingIntent.getActivity;
-
-import android.content.Context;
-import android.content.SharedPreferences;
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -11,9 +9,19 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
-import org.json.JSONException;
+
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.SignInButton;
+
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,12 +35,48 @@ import the.winchesters.taxiii.retrofit.RetrofitService;
 
 public class LoginFormActivity extends AppCompatActivity {
 
+    private SignInButton googleAuthButton;
+    private GoogleSignInClient googleSignInClient;
+    private ActivityResultLauncher<Intent> someActivityResultLauncher;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        someActivityResultLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (result.getResultCode() == Activity.RESULT_OK) {
+                        // There are no request codes
+                        Intent data = result.getData();
+                        System.out.println(data);
+                    }
+                });
+
         setContentView(R.layout.activity_login_form);
         initialiseComponents();
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
+        googleSignInClient = GoogleSignIn.getClient(this, gso);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        googleAuthButton =  (SignInButton) findViewById(R.id.fab_google);
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+        if (account != null)
+            updateUI(account);
+        googleAuthButton.setOnClickListener(view -> {
+            signInThroughGoogle();
+        });
+
+    }
+
+    private void updateUI(GoogleSignInAccount account) {
+        //TODO
+        Logger.getGlobal().log(Level.SEVERE, "updateUI not yet handled");
     }
 
     private void initialiseComponents() {
@@ -84,4 +128,9 @@ public class LoginFormActivity extends AppCompatActivity {
 
 
     }
+    private void signInThroughGoogle() {
+        Intent signInIntent = googleSignInClient.getSignInIntent();
+        someActivityResultLauncher.launch(signInIntent);
+    }
+
 }

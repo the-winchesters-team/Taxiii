@@ -95,13 +95,16 @@
         app:layout_constraintTop_toBottomOf="@+id/forgotPasswordTV" />
 
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <com.google.android.gms.common.SignInButton
         android:id="@+id/fab_google"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
         android:backgroundTint="@color/white"
         android:src="@drawable/google"
-
+        android:text="google"
+        android:textColor="#000000"
+        app:cornerRadius="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.208"
@@ -113,9 +116,10 @@
         android:id="@+id/fab_facebook"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
         android:backgroundTint="@color/white"
-        android:src="@drawable/facebook"
 
+        android:src="@drawable/facebook"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -127,9 +131,10 @@
         android:id="@+id/fab_twitter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
         android:backgroundTint="@color/white"
-        android:src="@drawable/twitter"
 
+        android:src="@drawable/twitter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.816"
@@ -141,13 +146,20 @@
         android:id="@+id/socialsTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="66dp"
         android:text="@string/login_social_hint"
         android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/fab_facebook"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signinButton" />
+
+<!--    <Button-->
+<!--        android:id="@+id/button"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Button"-->
+<!--        tools:layout_editor_absoluteX="55dp"-->
+<!--        tools:layout_editor_absoluteY="604dp" />-->
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 
