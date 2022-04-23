@@ -36,7 +36,7 @@ public class SignUpActivity extends AppCompatActivity {
     }
     private void signUp() {
         TextView emailTV = (TextView) findViewById(R.id.emailET);
-        TextView passwordTV = (TextView) findViewById(R.id.passwordET);
+        TextView passwordTV = (TextView) findViewById(R.id.password);
         Button signUpBtn = (Button) findViewById(R.id.signinButton);
         signUpBtn.setOnClickListener(view -> {
             final String email = emailTV.getText().toString();
