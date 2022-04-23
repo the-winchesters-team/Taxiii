@@ -1,5 +1,5 @@
 package the.winchesters.taxiii.dto;
 
-public class User {
+public class SignUpResponseDto {
 
 }

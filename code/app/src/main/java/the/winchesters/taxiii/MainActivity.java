@@ -27,10 +27,14 @@ public class MainActivity extends AppCompatActivity {
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
+<<<<<<< HEAD
                 Intent intent  = new Intent(MainActivity.this, TaxiDriverMapActivity.class);
+=======
+                Intent intent  = new Intent(MainActivity.this, LoginOrSignUpActivity.class);
+
+>>>>>>> 77693e2de99800c08c80bf1d0f3ccb38dc7a2ead
                 startActivity(intent);
                 finish();
-
             }
         },3000);
     }

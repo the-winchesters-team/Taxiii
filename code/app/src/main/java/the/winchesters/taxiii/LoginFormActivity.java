@@ -33,6 +33,7 @@ import retrofit2.Response;
 import the.winchesters.taxiii.dto.LoginFormData;
 import the.winchesters.taxiii.retrofit.ApiEndPoints;
 import the.winchesters.taxiii.retrofit.RetrofitService;
+import the.winchesters.taxiii.utils.TokenUtils;
 
 public class LoginFormActivity extends AppCompatActivity {
 
@@ -104,12 +105,8 @@ public class LoginFormActivity extends AppCompatActivity {
                         @Override
                         public void onResponse(Call call, Response response) {
                             if (response.code()==200){
-                                //https://stackoverflow.com/questions/3624280/how-to-use-sharedpreferences-in-android-to-store-fetch-and-edit-values
                                 //Save token in shared preferences
-                                String saveToken = response.headers().get("Authorization");
-                                editor.putString("Authorization", saveToken);
-                                Log.i("Login", saveToken);
-                                editor.apply();
+                                TokenUtils.saveJwtToken(response.headers().get("Authorization"),LoginFormActivity.this);
                                 Toast.makeText(LoginFormActivity.this, "success", Toast.LENGTH_SHORT).show();
 
                             }else{

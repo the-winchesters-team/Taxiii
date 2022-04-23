@@ -44,10 +44,10 @@
             android:name=".LoginFormActivity"
             android:exported="false" />
         <activity
-            android:name=".login_pick_role"
+            android:name=".PickingRoleActivity"
             android:exported="false" />
         <activity
-            android:name=".login"
+            android:name=".LoginOrSignUpActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
