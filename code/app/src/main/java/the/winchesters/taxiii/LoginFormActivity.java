@@ -1,11 +1,16 @@
 package the.winchesters.taxiii;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -28,11 +33,22 @@ public class LoginFormActivity extends AppCompatActivity {
 
     private SignInButton googleAuthButton;
     private GoogleSignInClient googleSignInClient;
+    private ActivityResultLauncher<Intent> someActivityResultLauncher;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        someActivityResultLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (result.getResultCode() == Activity.RESULT_OK) {
+                        // There are no request codes
+                        Intent data = result.getData();
+                        System.out.println(data);
+                    }
+                });
+
         setContentView(R.layout.activity_login_form);
         initialiseComponents();
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -97,7 +113,7 @@ public class LoginFormActivity extends AppCompatActivity {
     }
     private void signInThroughGoogle() {
         Intent signInIntent = googleSignInClient.getSignInIntent();
-        startActivityForResult(signInIntent, 1);
+        someActivityResultLauncher.launch(signInIntent);
     }
 
 }
