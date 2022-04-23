@@ -22,7 +22,7 @@ public class PickingRoleActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        //navigate to client
+        //navigate to client form
         View clientImage  = findViewById(R.id.client_image);
         clientImage.setOnClickListener(view -> {
             Intent intent  = new Intent(PickingRoleActivity.this, SignUpActivity.class);

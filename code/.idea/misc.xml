@@ -35,7 +35,7 @@
         <entry key="app/src/main/res/layout/activity_login_or_signup.xml" value="0.5" />
         <entry key="app/src/main/res/layout/activity_login_pick_role.xml" value="0.19895833333333332" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.19895833333333332" />
-        <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.18" />
         <entry key="app/src/main/res/layout/login.xml" value="0.19895833333333332" />
       </map>
     </option>
