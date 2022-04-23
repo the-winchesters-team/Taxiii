@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".login"
+    tools:context=".LoginOrSignUpActivity"
     android:background="@drawable/img"
     >
 
@@ -79,7 +79,7 @@
         android:layout_marginLeft="40dp"/>
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/sign_up_clickable"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Sign Up"
@@ -93,7 +93,7 @@
         app:layout_constraintVertical_bias="0.236" />
 
     <TextView
-        android:id="@+id/textView10"
+        android:id="@+id/login_clickable"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/inter_light"
@@ -103,7 +103,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        app:layout_constraintTop_toBottomOf="@+id/sign_up_clickable"
         app:layout_constraintVertical_bias="0.235" />
 
 

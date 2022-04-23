@@ -4,12 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".login_pick_role"
+    tools:context=".PickingRoleActivity"
     android:background="@color/myBlue"
 >
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/taxi_image"
         android:layout_width="148dp"
         android:layout_height="230dp"
         android:layout_marginTop="212dp"
@@ -19,7 +19,7 @@
         app:srcCompat="@drawable/taxi_icon" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/client_image"
         android:layout_width="114dp"
         android:layout_height="140dp"
         android:layout_marginTop="82dp"
@@ -27,7 +27,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        app:layout_constraintTop_toBottomOf="@+id/taxi_image"
         app:layout_constraintVertical_bias="0.281"
         app:srcCompat="@drawable/client" />
 
@@ -39,11 +39,11 @@
         android:textColor="@color/white"
         android:textSize="30sp"
         android:fontFamily="@font/inter_black"
-        app:layout_constraintBottom_toTopOf="@+id/imageView3"
+        app:layout_constraintBottom_toTopOf="@+id/client_image"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.511"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        app:layout_constraintTop_toBottomOf="@+id/taxi_image"
         app:layout_constraintVertical_bias="0.284" />
 
 
@@ -59,7 +59,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3"
+        app:layout_constraintTop_toBottomOf="@+id/client_image"
         app:layout_constraintVertical_bias="0.046" />
 
     <TextView
@@ -70,7 +70,7 @@
         android:fontFamily="@font/kaushan_script"
         android:textSize="50sp"
         android:textColor="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/imageView2"
+        app:layout_constraintBottom_toTopOf="@+id/taxi_image"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
