@@ -14,6 +14,7 @@ import android.location.Location;
 import android.os.Bundle;
 
 import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApi;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationServices;
@@ -54,14 +55,25 @@ public class TaxiDriverMapActivity extends FragmentActivity implements OnMapRead
     @Override
     public void onMapReady(GoogleMap googleMap) {
         map = googleMap;
-        LatLng morocco = new LatLng(33.589886, -7.603869);
-        map.addMarker(new MarkerOptions().position(morocco).title("Morocco"));
-        map.moveCamera(CameraUpdateFactory.newLatLng(morocco));
+        if (!checkLocationPermission())
+            return;
+        buildClient();
+        map.setMyLocationEnabled(true);
+
     }
 
     @Override
     public void onLocationChanged(@NonNull Location location) {
-
+        lastKnownLocation = location;
+        map.moveCamera(
+                CameraUpdateFactory.newLatLng(
+                        new LatLng(
+                                lastKnownLocation.getLatitude(),
+                                lastKnownLocation.getLongitude()
+                        )
+                )
+        );
+        map.animateCamera(CameraUpdateFactory.zoomBy(15));
     }
 
 
@@ -92,6 +104,7 @@ public class TaxiDriverMapActivity extends FragmentActivity implements OnMapRead
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
     }
+
     public boolean checkLocationPermission() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
@@ -116,5 +129,15 @@ public class TaxiDriverMapActivity extends FragmentActivity implements OnMapRead
         } else {
             return true;
         }
+    }
+
+    private synchronized void buildClient() {
+        googleApiClient = new GoogleApiClient
+                .Builder(this)
+                .addApi(LocationServices.API)
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                .build();
+        googleApiClient.connect();
     }
 }
