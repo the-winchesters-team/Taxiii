@@ -1,84 +1,72 @@
 package the.winchesters.taxiii;
 
-import static android.content.ContentValues.TAG;
-
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;port com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-
-
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import the.winchesters.taxiii.dto.LoginFormData;
-import the.winchesters.taxiii.retrofit.ApiEndPoints;
-import the.winchesters.taxiii.retrofit.RetrofitService;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class SignUpActivity extends AppCompatActivity {
 
-    private FirebaseAuth mAuth;
+    private FirebaseAuth auth;
+    private FirebaseAuth.AuthStateListener firebaseAuthListener;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
-        mAuth = FirebaseAuth.getInstance();
+
+        auth = FirebaseAuth.getInstance();
+        firebaseAuthListener = firebaseAuth -> {
+            FirebaseUser user =   FirebaseAuth.getInstance().getCurrentUser();
+            if(user!=null){
+                Intent intent = new Intent(SignUpActivity.this,HomeActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        };
+        signUp();
     }
+    private void signUp() {
+        TextView emailTV = (TextView) findViewById(R.id.emailET);
+        TextView passwordTV = (TextView) findViewById(R.id.passwordET);
+        Button signUpBtn = (Button) findViewById(R.id.signinButton);
+        signUpBtn.setOnClickListener(view -> {
+            final String email = emailTV.getText().toString();
+            final String password = passwordTV.getText().toString();
+            auth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(SignUpActivity.this, task -> {
+                if(!task.isSuccessful()) {
+                    Toast.makeText(SignUpActivity.this, "sign up error", Toast.LENGTH_SHORT).show();
+                }else {
+                    String user_id = auth.getCurrentUser().getUid();
+                    DatabaseReference user_db = FirebaseDatabase.getInstance().getReference()
+                            .child("User")
+                            .child("Client")
+                            .child(user_id);
+
+                    user_db.setValue(true);
+                }
+            });
+        });
+    }
+
     @Override
-    public void onStart() {
+    protected void onStart() {
         super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if(currentUser != null){
-//            reload();
-            currentUser.reload();
-        }
+        auth.addAuthStateListener(firebaseAuthListener);
     }
-    private void initialiseComponents() {
-        TextView email = (TextView) findViewById(R.id.emailET);
-        TextView password =(TextView)  findViewById(R.id.passwordET);
-        mAuth.createUserWithEmailAndPassword(email.getText().toString(), password.getText().toString())
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "createUserWithEmail:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            updateUI(user);
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                            Toast.makeText(EmailPasswordActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
-                            updateUI(null);
-                        }
-                    }
-                });
 
-
-
-
-
-
-    }
-    private void updateUI(FirebaseUser account) {
-        //TODO
-        Logger.getGlobal().log(Level.SEVERE, "updateUI not yet handled");
-        Logger.getGlobal().log(Level.SEVERE, account.getEmail());
+    @Override
+    protected void onStop() {
+        super.onStop();
+        auth.removeAuthStateListener(firebaseAuthListener);
     }
 
 }
