@@ -18,6 +18,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -79,7 +80,6 @@ public class SignUpActivity extends AppCompatActivity {
         //TODO
         Logger.getGlobal().log(Level.SEVERE, "updateUI not yet handled");
         Logger.getGlobal().log(Level.SEVERE, account.getEmail());
-
     }
 
 }

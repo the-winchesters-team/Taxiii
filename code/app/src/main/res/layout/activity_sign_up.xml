@@ -8,7 +8,7 @@
     tools:context=".SignUpActivity">
 
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/nameET"
+        android:id="@+id/usernameET"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="30dp"
@@ -19,7 +19,7 @@
         android:drawablePadding="15dp"
         android:ems="10"
         android:fontFamily="@font/inter_medium"
-        android:hint="Full name"
+        android:hint="Username"
         android:inputType="textPersonName"
         android:paddingVertical="10dp"
         android:textColor="@color/black"
@@ -43,6 +43,7 @@
 
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/edit_text_style2"
@@ -80,7 +81,7 @@
         android:textColorHint="@color/myGrey"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nameET" />
+        app:layout_constraintTop_toBottomOf="@+id/usernameET" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/numberET"
@@ -109,7 +110,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        app:layout_constraintBottom_toTopOf="@+id/nameET"
+        app:layout_constraintBottom_toTopOf="@+id/usernameET"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
