@@ -3,14 +3,22 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Destock afric/AndroidStudioProjects/Taxiii/code/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1" />
         <entry key="..\:/Users/Destock afric/AndroidStudioProjects/Taxiii/code/app/src/main/res/drawable/backgorund_design.xml" value="0.1435" />
+        <entry key="..\:/Users/Destock afric/AndroidStudioProjects/Taxiii/code/app/src/main/res/drawable/btn_bg.xml" value="0.1245" />
+        <entry key="..\:/Users/Destock afric/AndroidStudioProjects/Taxiii/code/app/src/main/res/drawable/curve_top.xml" value="0.132" />
         <entry key="..\:/Users/Destock afric/AndroidStudioProjects/Taxiii/code/app/src/main/res/drawable/edit_text_style.xml" value="0.1435" />
         <entry key="..\:/Users/Destock afric/AndroidStudioProjects/Taxiii/code/app/src/main/res/drawable/edit_text_style2.xml" value="0.1435" />
+        <entry key="..\:/Users/Destock afric/AndroidStudioProjects/Taxiii/code/app/src/main/res/drawable/edit_text_style_login.xml" value="0.1245" />
         <entry key="..\:/Users/Destock afric/AndroidStudioProjects/Taxiii/code/app/src/main/res/drawable/rounded_btn_shape.xml" value="0.149" />
         <entry key="..\:/Users/Destock afric/AndroidStudioProjects/Taxiii/code/app/src/main/res/layout/activity_login.xml" value="0.14130434782608695" />
+        <entry key="..\:/Users/Destock afric/AndroidStudioProjects/Taxiii/code/app/src/main/res/layout/activity_login2.xml" value="0.14666666666666667" />
         <entry key="..\:/Users/Destock afric/AndroidStudioProjects/Taxiii/code/app/src/main/res/layout/activity_login_form.xml" value="0.1796875" />
         <entry key="..\:/Users/Destock afric/AndroidStudioProjects/Taxiii/code/app/src/main/res/layout/activity_main.xml" value="0.10260416666666666" />
         <entry key="..\:/Users/Destock afric/AndroidStudioProjects/Taxiii/code/app/src/main/res/layout/activity_sign_up.xml" value="0.13333333333333333" />
+        <entry key="..\:/Users/Destock afric/AndroidStudioProjects/Taxiii/code/app/src/main/res/layout/login_tab_fragment.xml" value="0.1796875" />
+        <entry key="..\:/Users/Destock afric/AndroidStudioProjects/Taxiii/code/app/src/main/res/layout/signup_tab_fragement.xml" value="0.1796875" />
+        <entry key="..\:/Users/Destock afric/AndroidStudioProjects/Taxiii/code/app/src/main/res/layout/signup_tab_fragment.xml" value="0.1796875" />
         <entry key="..\:/Users/Destock afric/AndroidStudioProjects/Taxiii/code/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
         <entry key="..\:/Users/Destock afric/Documents/taxi/code/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1795" />
         <entry key="..\:/Users/Destock afric/Documents/taxi/code/app/src/main/res/drawable/backgorund_design.xml" value="0.176" />
