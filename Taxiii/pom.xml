@@ -12,7 +12,7 @@
 	<groupId>ma.ensias.winchesters</groupId>
 	<artifactId>Taxiii</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<name>Taxiii</name>
 	<description>Api for a taxi service app</description>
 	<properties>
