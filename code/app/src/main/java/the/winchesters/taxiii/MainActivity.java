@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                Intent intent  = new Intent(MainActivity.this, MapsActivity.class);
+                Intent intent  = new Intent(MainActivity.this, LoginFormActivity.class);
                 startActivity(intent);
                 finish();
 
