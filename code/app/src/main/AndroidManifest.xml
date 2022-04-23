@@ -35,9 +35,9 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".MapsActivity"
+            android:name=".activity.TaxiDriverMapActivity"
             android:exported="false"
-            android:label="@string/title_activity_maps" />
+            android:label="@string/title_activity_taxi_driver_map" />
         <activity
             android:name=".SignUpActivity"
             android:exported="false" />
