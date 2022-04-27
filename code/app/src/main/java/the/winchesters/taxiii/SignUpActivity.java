@@ -37,7 +37,7 @@ public class SignUpActivity extends AppCompatActivity {
     private void signUp() {
         TextView emailTV = (TextView) findViewById(R.id.emailET);
         TextView passwordTV = (TextView) findViewById(R.id.password);
-        Button signUpBtn = (Button) findViewById(R.id.signinButton);
+        Button signUpBtn = (Button) findViewById(R.id.appCompatButton);
         signUpBtn.setOnClickListener(view -> {
             final String email = emailTV.getText().toString();
             final String password = passwordTV.getText().toString();
@@ -46,6 +46,7 @@ public class SignUpActivity extends AppCompatActivity {
                     Toast.makeText(SignUpActivity.this, "sign up error", Toast.LENGTH_SHORT).show();
                 }else {
                     String user_id = auth.getCurrentUser().getUid();
+                    Toast.makeText(SignUpActivity.this, String.format("user %s registered",user_id), Toast.LENGTH_SHORT).show();
                     DatabaseReference user_db = FirebaseDatabase.getInstance().getReference()
                             .child("User")
                             .child("Client")
