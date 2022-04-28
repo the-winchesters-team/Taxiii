@@ -1,5 +1,7 @@
 package the.winchesters.taxiii.activity;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
@@ -12,7 +14,10 @@ import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
+import android.util.Log;
 
+import com.firebase.geofire.GeoFire;
+import com.firebase.geofire.GeoLocation;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApi;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -25,8 +30,13 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.location.LocationRequest;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.List;
+import java.util.Objects;
 
 import the.winchesters.taxiii.MainActivity;
 import the.winchesters.taxiii.R;
@@ -49,6 +59,7 @@ public class TaxiDriverMapActivity extends FragmentActivity implements OnMapRead
         setContentView(binding.getRoot());
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
+        assert mapFragment != null;
         mapFragment.getMapAsync(this);
     }
 
@@ -65,6 +76,7 @@ public class TaxiDriverMapActivity extends FragmentActivity implements OnMapRead
     @Override
     public void onLocationChanged(@NonNull Location location) {
         lastKnownLocation = location;
+        Log.d("debug",location.toString());
         map.moveCamera(
                 CameraUpdateFactory.newLatLng(
                         new LatLng(
@@ -74,6 +86,13 @@ public class TaxiDriverMapActivity extends FragmentActivity implements OnMapRead
                 )
         );
         map.animateCamera(CameraUpdateFactory.zoomBy(15));
+        // get current user's id
+        String currentUser = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
+        // get the reference to the "DriverIsAvailable" db
+        DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference("DriverIsAvailable");
+        GeoLocation geoLocation = new GeoLocation(lastKnownLocation.getLatitude(),lastKnownLocation.getLongitude());
+        GeoFire geoFire = new GeoFire(dbRef);
+        geoFire.setLocation(currentUser, geoLocation, (key, error) -> Log.e(TAG, "GeoFire Complete"));
     }
 
 
@@ -139,5 +158,20 @@ public class TaxiDriverMapActivity extends FragmentActivity implements OnMapRead
                 .addOnConnectionFailedListener(this)
                 .build();
         googleApiClient.connect();
+    }
+
+    @Override
+    protected void onStop() {
+        // when no longer tracked
+        super.onStop();
+        // get current user's id
+        String currentUser = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
+        // get the reference to the "DriverIsAvailable" db
+        DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference("DriverIsAvailable");
+        GeoFire geoFire = new GeoFire(dbRef);
+        geoFire.removeLocation(currentUser);
+
+
+
     }
 }
