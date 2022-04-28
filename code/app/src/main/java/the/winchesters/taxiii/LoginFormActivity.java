@@ -42,6 +42,8 @@ public class LoginFormActivity extends AppCompatActivity {
             if (!task.isSuccessful()) {
                 Toast.makeText(LoginFormActivity.this, "log in error", Toast.LENGTH_SHORT).show();
             } else {
+                Toast.makeText(LoginFormActivity.this, "login successful", Toast.LENGTH_SHORT).show();
+
                 Intent intent = new Intent(LoginFormActivity.this, HomeActivity.class);
                 startActivity(intent);
                 finish();

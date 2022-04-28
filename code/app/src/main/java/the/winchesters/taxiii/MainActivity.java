@@ -33,24 +33,16 @@ public class MainActivity extends AppCompatActivity {
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                Intent intent  = new Intent(MainActivity.this, LoginOrSignUpActivity.class);
+                FirebaseUser currentUser = mAuth.getCurrentUser();
+                Intent intent;
+                if (currentUser != null) {
+                    intent = new Intent(MainActivity.this, HomeActivity.class);
+                }else {
+                    intent = new Intent(MainActivity.this, LoginOrSignUpActivity.class);
+                }
                 startActivity(intent);
                 finish();
-
             }
         },3000);
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        mAuth = FirebaseAuth.getInstance();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if (currentUser != null) {
-            Intent intent = new Intent(MainActivity.this, HomeActivity.class);
-            startActivity(intent);
-            finish();
-        }
     }
 }
