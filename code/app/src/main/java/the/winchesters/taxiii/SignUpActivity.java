@@ -13,6 +13,10 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.Objects;
+
+import the.winchesters.taxiii.activity.TaxiDriverMapActivity;
+
 public class SignUpActivity extends AppCompatActivity {
 
     private FirebaseAuth auth;
@@ -27,7 +31,7 @@ public class SignUpActivity extends AppCompatActivity {
         firebaseAuthListener = firebaseAuth -> {
             FirebaseUser user =   FirebaseAuth.getInstance().getCurrentUser();
             if(user!=null){
-                Intent intent = new Intent(SignUpActivity.this,HomeActivity.class);
+                Intent intent = new Intent(SignUpActivity.this, TaxiDriverMapActivity.class);
                 startActivity(intent);
                 finish();
             }
@@ -45,7 +49,7 @@ public class SignUpActivity extends AppCompatActivity {
                 if(!task.isSuccessful()) {
                     Toast.makeText(SignUpActivity.this, "sign up error", Toast.LENGTH_SHORT).show();
                 }else {
-                    String user_id = auth.getCurrentUser().getUid();
+                    String user_id = Objects.requireNonNull(auth.getCurrentUser()).getUid();
                     Toast.makeText(SignUpActivity.this, String.format("user %s registered",user_id), Toast.LENGTH_SHORT).show();
                     DatabaseReference user_db = FirebaseDatabase.getInstance().getReference()
                             .child("User")
@@ -58,16 +62,16 @@ public class SignUpActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        auth.addAuthStateListener(firebaseAuthListener);
-    }
+        @Override
+        protected void onStart() {
+            super.onStart();
+            auth.addAuthStateListener(firebaseAuthListener);
+        }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-        auth.removeAuthStateListener(firebaseAuthListener);
-    }
+        @Override
+        protected void onStop() {
+            super.onStop();
+            auth.removeAuthStateListener(firebaseAuthListener);
+        }
 
 }

@@ -1,33 +1,34 @@
 {
   "project_info": {
-    "project_number": "712911603392",
-    "project_id": "taxiii-winchesters",
-    "storage_bucket": "taxiii-winchesters.appspot.com"
+    "project_number": "956649808314",
+    "firebase_url": "https://myapp-343722-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "myapp-343722",
+    "storage_bucket": "myapp-343722.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:712911603392:android:c45ec95ea4663c8c8c8f25",
+        "mobilesdk_app_id": "1:956649808314:android:f0985105750e6e2f53bd83",
         "android_client_info": {
-          "package_name": "the.winchesters.taxiii"
+          "package_name": "com.simcoder.uber"
         }
       },
       "oauth_client": [
         {
-          "client_id": "712911603392-30goja6meea5s5o7q4fada1bb2oa8kso.apps.googleusercontent.com",
+          "client_id": "956649808314-3s6nrf93mbdsakoj907brgdu2l473cc7.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCHDe13QKZyxohtUd2gcIRW3TJ4bRwdRIM"
+          "current_key": "AIzaSyB0zpnFO0WQ9BwI_2wjp7LnwHrO9XXHT6o"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "712911603392-30goja6meea5s5o7q4fada1bb2oa8kso.apps.googleusercontent.com",
+              "client_id": "956649808314-3s6nrf93mbdsakoj907brgdu2l473cc7.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
