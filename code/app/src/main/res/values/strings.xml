@@ -12,4 +12,5 @@
     <string name="title_location_permission">Location needed</string>
     <string name="text_location_permission">Taxiii needs your location</string>
     <string name="ok">OK</string>
+    <string name="user_is_authenticated">User is authenticated</string>
 </resources>
