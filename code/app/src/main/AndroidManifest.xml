@@ -16,7 +16,7 @@
         android:theme="@style/Theme.Taxiii"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".HomeActivity"
+            android:name=".activity.HomeActivity"
             android:exported="false" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -35,22 +35,22 @@
             android:exported="false"
             android:label="@string/title_activity_taxi_driver_map" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".activity.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".SignUpActivity"
+            android:name=".activity.SignUpActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginFormActivity"
+            android:name=".activity.LoginFormActivity"
             android:exported="false" />
         <activity
-            android:name=".PickingRoleActivity"
+            android:name=".activity.PickingRoleActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginOrSignUpActivity"
+            android:name=".activity.LoginOrSignUpActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

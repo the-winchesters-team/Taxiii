@@ -1,4 +1,4 @@
-package the.winchesters.taxiii;
+package the.winchesters.taxiii.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import the.winchesters.taxiii.R;
 
 public class LoginFormActivity extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package the.winchesters.taxiii;
+package the.winchesters.taxiii.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import java.util.Objects;
+import the.winchesters.taxiii.R;
 
 public class LoginOrSignUpActivity extends AppCompatActivity {
 

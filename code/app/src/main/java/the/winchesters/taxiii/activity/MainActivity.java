@@ -1,4 +1,4 @@
-package the.winchesters.taxiii;
+package the.winchesters.taxiii.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,11 +10,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import java.util.Objects;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import the.winchesters.taxiii.activity.TaxiDriverMapActivity;
+import the.winchesters.taxiii.R;
 
 public class MainActivity extends AppCompatActivity {
     Timer timer;
