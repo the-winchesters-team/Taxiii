@@ -1,4 +1,4 @@
- package the.winchesters.taxiii;
+ package the.winchesters.taxiii.activity;
 
 import android.os.Bundle;
 
@@ -7,6 +7,9 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
+
+import the.winchesters.taxiii.LoginAdapter;
+import the.winchesters.taxiii.R;
 
  public class LoginActivity extends AppCompatActivity {
     TabLayout tabLayout;

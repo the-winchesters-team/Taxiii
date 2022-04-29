@@ -16,6 +16,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.Objects;
+
 import the.winchesters.taxiii.activity.TaxiDriverMapActivity;
 
 public class SignUpActivity extends AppCompatActivity {
@@ -33,9 +35,10 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private void initializeComponents() {
-        TextView emailTV = (TextView) findViewById(R.id.emailET);
-        TextView passwordTV = (TextView) findViewById(R.id.password);
-        Button signUpBtn = (Button) findViewById(R.id.appCompatButton);
+        TextView emailTV = (TextView) findViewById(R.id.sign_up_email);
+        TextView passwordTV = (TextView) findViewById(R.id.sign_up_password);
+        Button signUpBtn = (Button) findViewById(R.id.sign_up_sign_up_button);
+
         signUpBtn.setOnClickListener(view -> {
             final String email = emailTV.getText().toString();
             final String password = passwordTV.getText().toString();
@@ -46,10 +49,10 @@ public class SignUpActivity extends AppCompatActivity {
     private void signUp(String email, String password) {
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(SignUpActivity.this, task -> {
             if (!task.isSuccessful()) {
-                task.getException().printStackTrace();
+                Objects.requireNonNull(task.getException()).printStackTrace();
                 Toast.makeText(SignUpActivity.this, "sign up error", Toast.LENGTH_SHORT).show();
             } else {
-                String user_id = mAuth.getCurrentUser().getUid();
+                String user_id = Objects.requireNonNull(mAuth.getCurrentUser()).getUid();
                 Toast.makeText(SignUpActivity.this, String.format("user %s registered", user_id), Toast.LENGTH_SHORT).show();
                 DatabaseReference user_db = FirebaseDatabase.getInstance().getReference()
                         .child("User")
@@ -57,6 +60,10 @@ public class SignUpActivity extends AppCompatActivity {
                         .child(user_id);
 
                 user_db.setValue(true);
+
+                Intent intent = new Intent(SignUpActivity.this, HomeActivity.class);
+                startActivity(intent);
+                finish();
 
             }
         });
@@ -66,6 +73,7 @@ public class SignUpActivity extends AppCompatActivity {
         // Send verification email
         // [START send_email_verification]
         final FirebaseUser user = mAuth.getCurrentUser();
+        assert user != null;
         user.sendEmailVerification()
                 .addOnCompleteListener(this, task -> {
                     // Email sent
@@ -80,7 +88,7 @@ public class SignUpActivity extends AppCompatActivity {
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
-            Intent intent = new Intent(SignUpActivity.this, TaxiDriverMapActivity.class);
+            Intent intent = new Intent(SignUpActivity.this, HomeActivity.class);
             startActivity(intent);
             finish();
         }
