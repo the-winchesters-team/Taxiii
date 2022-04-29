@@ -19,14 +19,14 @@ public class PickingRoleActivity extends AppCompatActivity {
         View taxiImage  = findViewById(R.id.taxi_image);
         taxiImage.setOnClickListener(view -> {
             //TODO: change
-            Intent intent  = new Intent(PickingRoleActivity.this, SignUpActivity.class);
+            Intent intent  = new Intent(PickingRoleActivity.this, TaxiDriverSignUpActivity.class);
             startActivity(intent);
         });
 
         //navigate to client form
         View clientImage  = findViewById(R.id.client_image);
         clientImage.setOnClickListener(view -> {
-            Intent intent  = new Intent(PickingRoleActivity.this, SignUpActivity.class);
+            Intent intent  = new Intent(PickingRoleActivity.this, ClientSignUpActivity.class);
             startActivity(intent);
         });
     }

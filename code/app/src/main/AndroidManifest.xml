@@ -38,7 +38,10 @@
             android:name=".activity.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.SignUpActivity"
+            android:name=".activity.ClientSignUpActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.TaxiDriverSignUpActivity"
             android:exported="false" />
         <activity
             android:name=".activity.LoginFormActivity"
