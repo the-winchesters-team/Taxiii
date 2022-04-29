@@ -13,4 +13,12 @@
     <string name="text_location_permission">Taxiii needs your location</string>
     <string name="ok">OK</string>
     <string name="user_is_authenticated">User is authenticated</string>
+    <string name="name_icon">name_icon</string>
+    <string name="number_icon">number_icon</string>
+    <string name="email">Email</string>
+    <string name="change_password">Change password</string>
+    <string name="gender_icon">gender_icon</string>
+    <string name="gender">Gender</string>
+    <string name="date_icon">date_icon</string>
+    <string name="date_of_birth">Date of birth</string>
 </resources>

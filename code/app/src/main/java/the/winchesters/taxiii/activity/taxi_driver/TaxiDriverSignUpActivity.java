@@ -1,4 +1,4 @@
-package the.winchesters.taxiii.activity;
+package the.winchesters.taxiii.activity.taxi_driver;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,9 +16,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.Objects;
 
 import the.winchesters.taxiii.R;
+import the.winchesters.taxiii.activity.HomeActivity;
+import the.winchesters.taxiii.model.TaxiDriver;
 import the.winchesters.taxiii.model.User;
 
-public class ClientSignUpActivity extends AppCompatActivity {
+public class TaxiDriverSignUpActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
 
@@ -54,28 +56,28 @@ public class ClientSignUpActivity extends AppCompatActivity {
             if(password.equals(confirmPassword)){
                 signUp(email, password,username,firstName,lastName,number);
             }else{
-                Toast.makeText(ClientSignUpActivity.this,"confirm password doesn't match password", Toast.LENGTH_SHORT).show();
+                Toast.makeText(TaxiDriverSignUpActivity.this,"confirm password doesn't match password", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
     private void signUp(String email, String password,String username,String firstName,String lastName,String number) {
-        mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(ClientSignUpActivity.this, task -> {
+        mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(TaxiDriverSignUpActivity.this, task -> {
             if (!task.isSuccessful()) {
                 Objects.requireNonNull(task.getException()).printStackTrace();
-                Toast.makeText(ClientSignUpActivity.this, "sign up error", Toast.LENGTH_SHORT).show();
+                Toast.makeText(TaxiDriverSignUpActivity.this, "sign up error", Toast.LENGTH_SHORT).show();
             } else {
                 String user_id = Objects.requireNonNull(mAuth.getCurrentUser()).getUid();
-                Toast.makeText(ClientSignUpActivity.this, String.format("user %s registered", user_id), Toast.LENGTH_SHORT).show();
+                Toast.makeText(TaxiDriverSignUpActivity.this, String.format("user %s registered", user_id), Toast.LENGTH_SHORT).show();
                 DatabaseReference user_db = FirebaseDatabase.getInstance().getReference()
                         .child("User")
-                        .child("Client")
+                        .child("TaxiDriver")
                         .child(user_id);
 
-                User user = new User(username,firstName,lastName,number);
+                User user = new TaxiDriver(username,firstName,lastName,number);
                 user_db.setValue(user);
 
-                Intent intent = new Intent(ClientSignUpActivity.this, HomeActivity.class);
+                Intent intent = new Intent(TaxiDriverSignUpActivity.this, HomeActivity.class);
                 startActivity(intent);
                 finish();
 
@@ -102,7 +104,7 @@ public class ClientSignUpActivity extends AppCompatActivity {
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
-            Intent intent = new Intent(ClientSignUpActivity.this, HomeActivity.class);
+            Intent intent = new Intent(TaxiDriverSignUpActivity.this, HomeActivity.class);
             startActivity(intent);
             finish();
         }

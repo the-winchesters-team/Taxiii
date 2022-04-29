@@ -1,4 +1,4 @@
-package the.winchesters.taxiii.activity;
+package the.winchesters.taxiii.activity.client;
 
 import static android.content.ContentValues.TAG;
 
@@ -35,7 +35,7 @@ import java.util.Objects;
 import the.winchesters.taxiii.R;
 import the.winchesters.taxiii.databinding.ActivityTaxiDriverMapBinding;
 
-public class TaxiDriverMapActivity extends FragmentActivity implements OnMapReadyCallback, LocationListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
+public class ClientMapActivity extends FragmentActivity implements OnMapReadyCallback, LocationListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
     private GoogleMap map;
@@ -125,7 +125,7 @@ public class TaxiDriverMapActivity extends FragmentActivity implements OnMapRead
                 new AlertDialog.Builder(this)
                         .setTitle(R.string.title_location_permission)
                         .setMessage(R.string.text_location_permission)
-                        .setPositiveButton(R.string.ok, (dialogInterface, i) -> ActivityCompat.requestPermissions(TaxiDriverMapActivity.this,
+                        .setPositiveButton(R.string.ok, (dialogInterface, i) -> ActivityCompat.requestPermissions(ClientMapActivity.this,
                                 new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                                 MY_PERMISSIONS_REQUEST_LOCATION))
                         .create()

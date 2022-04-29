@@ -3,9 +3,9 @@
     package="the.winchesters.taxiii">
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <application
         android:allowBackup="true"
@@ -15,6 +15,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Taxiii"
         android:usesCleartextTraffic="true">
+        <activity
+            android:name=".activity.ProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.client.ClientMapActivity"
+            android:exported="false" />
         <activity
             android:name=".activity.HomeActivity"
             android:exported="false" />
@@ -31,17 +37,17 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".activity.TaxiDriverMapActivity"
+            android:name=".activity.taxi_driver.TaxiDriverMapActivity"
             android:exported="false"
             android:label="@string/title_activity_taxi_driver_map" />
         <activity
             android:name=".activity.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.ClientSignUpActivity"
+            android:name=".activity.client.ClientSignUpActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.TaxiDriverSignUpActivity"
+            android:name=".activity.taxi_driver.TaxiDriverSignUpActivity"
             android:exported="false" />
         <activity
             android:name=".activity.LoginFormActivity"

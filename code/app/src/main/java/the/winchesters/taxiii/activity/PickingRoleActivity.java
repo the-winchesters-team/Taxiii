@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 
 import the.winchesters.taxiii.R;
+import the.winchesters.taxiii.activity.client.ClientSignUpActivity;
+import the.winchesters.taxiii.activity.taxi_driver.TaxiDriverSignUpActivity;
 
 public class PickingRoleActivity extends AppCompatActivity {
 
