@@ -26,25 +26,28 @@
             android:padding="4dp"
             android:layout_marginVertical="10dp"
         />
+
         <ImageView
             android:id="@+id/profile_back_icon"
             android:layout_width="45dp"
             android:layout_height="45dp"
-            android:src="@drawable/ic_baseline_arrow_back_24"
             android:layout_alignTop="@id/profile_user_picture"
             android:layout_marginStart="30dp"
             android:layout_marginTop="10dp"
-            android:contentDescription="@string/back_icon" />
+            android:contentDescription="@string/back_icon"
+            android:src="@drawable/ic_baseline_arrow_back_24"
+            />
+
         <TextView
             android:id="@+id/profile_username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="BenyazidHamza"
             android:layout_below="@id/profile_user_picture"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="20dp"
-            android:textSize="20sp"
-            />
+            android:text="username"
+            android:fontFamily="@font/inter_bold"
+            android:textSize="20sp" />
 
     </RelativeLayout>
 
@@ -83,11 +86,12 @@
                     android:text="@string/name" />
 
                 <TextView
+                    android:id="@+id/profile_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/profile_name_title"
                     android:layout_toEndOf="@id/name_icon"
-                    android:text="Hamza Benyazid"
+                    android:text="full name"
                     android:textColor="@color/myBlue" />
             </RelativeLayout>
 
@@ -114,11 +118,12 @@
                     android:text="@string/phone_number" />
 
                 <TextView
+                    android:id="@+id/profile_phone_number"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/profile_phone_number_title"
                     android:layout_toEndOf="@id/profile_number_icon"
-                    android:text="+212658040125"
+                    android:text="number"
                     android:textColor="@color/myBlue" />
             </RelativeLayout>
 
@@ -146,11 +151,12 @@
                     android:text="@string/email" />
 
                 <TextView
+                    android:id="@+id/profile_email"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/profile_email_title"
                     android:layout_toEndOf="@id/profile_mail_icon"
-                    android:text="benyazidhamza969@gmail.com"
+                    android:text="email"
                     android:textColor="@color/myBlue" />
             </RelativeLayout>
 
@@ -170,6 +176,7 @@
                     android:src="@drawable/change_password_icon" />
 
                 <TextView
+                    android:id="@+id/profile_change_password"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/change_password" />
@@ -199,6 +206,7 @@
                     android:text="@string/gender" />
 
                 <TextView
+                    android:id="@+id/profile_gender"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/profile_gender_title"
@@ -231,11 +239,12 @@
                     android:text="@string/date_of_birth" />
 
                 <TextView
+                    android:id="@+id/profile_date_of_birth"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/profile_date_of_birth_title"
                     android:layout_toEndOf="@id/profile_date_icon"
-                    android:text="15-07-2000"
+                    android:text="00-00-0000"
                     android:textColor="@color/myBlue" />
             </RelativeLayout>
         </LinearLayout>

@@ -34,14 +34,11 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 FirebaseUser currentUser = mAuth.getCurrentUser();
                 Intent intent;
-                //to test an activity
-                intent = new Intent(MainActivity.this, ProfileActivity.class);
-
-//                if (currentUser != null) {
-//                    intent = new Intent(MainActivity.this, HomeActivity.class);
-//                }else {
-//                    intent = new Intent(MainActivity.this, LoginOrSignUpActivity.class);
-//                }
+                if (currentUser != null) {
+                    intent = new Intent(MainActivity.this, HomeActivity.class);
+                }else {
+                    intent = new Intent(MainActivity.this, LoginOrSignUpActivity.class);
+                }
                 startActivity(intent);
                 finish();
             }
