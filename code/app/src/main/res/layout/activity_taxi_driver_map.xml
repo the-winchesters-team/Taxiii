@@ -70,5 +70,5 @@
             app:strokeColor="@color/myBlue"
             app:strokeWidth="3dp" />
     </RelativeLayout>
-
+    <include layout="@layout/activity_base"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

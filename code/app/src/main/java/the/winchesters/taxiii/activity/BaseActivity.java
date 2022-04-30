@@ -18,7 +18,7 @@ import com.google.android.material.navigation.NavigationView;
 
 import the.winchesters.taxiii.R;
 
-public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class BaseActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     DrawerLayout drawerLayout;
     Toolbar toolbar;
     NavigationView navigationView;
@@ -26,7 +26,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_base);
         initializeComponents();
         //customise group title
         Menu menu = navigationView.getMenu();
@@ -65,17 +65,18 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
+
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.home:
                 break;
             case R.id.profile:
-                Intent intent = new Intent(HomeActivity.this, PickingRoleActivity.class);
+                Intent intent = new Intent(BaseActivity.this, ProfileActivity.class);
                 startActivity(intent);
                 break;
             case R.id.myrides:
-                Intent intent2 = new Intent(HomeActivity.this, LoginActivity.class);
+                Intent intent2 = new Intent(BaseActivity.this, LoginActivity.class);
                 startActivity(intent2);
                 break;
 
@@ -84,4 +85,5 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         return true;
 
     }
+
 }

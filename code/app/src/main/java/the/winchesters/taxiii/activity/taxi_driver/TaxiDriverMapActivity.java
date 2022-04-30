@@ -30,6 +30,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -68,14 +69,11 @@ public class TaxiDriverMapActivity extends FragmentActivity implements OnMapRead
     private void signOut() {
         View logOutButton = findViewById(R.id.map_logout);
         logOutButton.setOnClickListener(view -> {
-            // when no longer tracked
-            // get current user's id
-            String currentUser = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
-            // get the reference to the "DriverIsAvailable" db
-            DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference("DriverIsAvailable");
-            GeoFire geoFire = new GeoFire(dbRef);
-            geoFire.removeLocation(currentUser);
-            mAuth.signOut();
+            FirebaseUser currentUser = mAuth.getCurrentUser();
+            if(currentUser!=null){
+                removeAvailableDriver(currentUser.getUid());
+                mAuth.signOut();
+            }
             Toast.makeText(TaxiDriverMapActivity.this, "user logged out", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(TaxiDriverMapActivity.this, LoginOrSignUpActivity.class);
             startActivity(intent);
@@ -192,12 +190,19 @@ public class TaxiDriverMapActivity extends FragmentActivity implements OnMapRead
     protected void onStop() {
         // when no longer tracked
         super.onStop();
-//        // get current user's id
-//        String currentUser = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
-//        // get the reference to the "DriverIsAvailable" db
-//        DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference("DriverIsAvailable");
-//        GeoFire geoFire = new GeoFire(dbRef);
-//        geoFire.removeLocation(currentUser);
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if(currentUser!=null){
+            removeAvailableDriver(currentUser.getUid());
+        }
 
     }
+
+    void removeAvailableDriver(String currentUser){
+        // get current user's id
+        // get the reference to the "DriverIsAvailable" db
+        DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference("DriverIsAvailable");
+        GeoFire geoFire = new GeoFire(dbRef);
+        geoFire.removeLocation(currentUser);
+    }
+
 }
