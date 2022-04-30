@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/Destock afric/Documents/taxiProject/code/app/src/main/res/drawable/curve_bottom.xml" value="0.1" />
+        <entry key="..\:/Users/Destock afric/Documents/taxiProject/code/app/src/main/res/drawable/curve_right_side.xml" value="0.129" />
+        <entry key="..\:/Users/Destock afric/Documents/taxiProject/code/app/src/main/res/drawable/curve_top.xml" value="0.108" />
+        <entry key="..\:/Users/Destock afric/Documents/taxiProject/code/app/src/main/res/drawable/edit_text_style.xml" value="0.108" />
+        <entry key="..\:/Users/Destock afric/Documents/taxiProject/code/app/src/main/res/drawable/edit_text_style2.xml" value="0.108" />
+        <entry key="..\:/Users/Destock afric/Documents/taxiProject/code/app/src/main/res/drawable/edit_text_style_login.xml" value="0.108" />
+        <entry key="..\:/Users/Destock afric/Documents/taxiProject/code/app/src/main/res/drawable/hamburger_icon.xml" value="0.1" />
+        <entry key="..\:/Users/Destock afric/Documents/taxiProject/code/app/src/main/res/drawable/item_background.xml" value="0.129" />
+        <entry key="..\:/Users/Destock afric/Documents/taxiProject/code/app/src/main/res/drawable/rounded_btn_shape.xml" value="0.108" />
+        <entry key="..\:/Users/Destock afric/Documents/taxiProject/code/app/src/main/res/layout/activity_home.xml" value="0.1" />
+        <entry key="..\:/Users/Destock afric/Documents/taxiProject/code/app/src/main/res/layout/activity_login2.xml" value="0.1796875" />
+        <entry key="..\:/Users/Destock afric/Documents/taxiProject/code/app/src/main/res/layout/curve_bottom.xml" value="0.1" />
+        <entry key="..\:/Users/Destock afric/Documents/taxiProject/code/app/src/main/res/layout/header.xml" value="0.1796875" />
+        <entry key="..\:/Users/Destock afric/Documents/taxiProject/code/app/src/main/res/layout/login_tab_fragment.xml" value="0.1796875" />
+        <entry key="..\:/Users/Destock afric/Documents/taxiProject/code/app/src/main/res/layout/toolbar.xml" value="0.1796875" />
+        <entry key="..\:/Users/Destock afric/Documents/taxiProject/code/app/src/main/res/menu/main_menu.xml" value="0.1796875" />
+      </map>
+    </option>
+  </component>
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="11" project-jdk-type="JavaSDK" />
+</project>

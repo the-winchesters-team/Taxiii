@@ -11,5 +11,7 @@
     <string name="title_activity_taxi_driver_map">TaxiDriverMapActivity</string>
     <string name="title_location_permission">Location needed</string>
     <string name="text_location_permission">Taxiii needs your location</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="ok">OK</string>
 </resources>

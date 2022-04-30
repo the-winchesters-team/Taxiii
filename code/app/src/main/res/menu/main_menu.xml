@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/title_account"
+        android:title="Account">
+        <menu>
+            <group
+                android:id="@+id/account_grp"
+                android:checkableBehavior="single">
+                <item
+                    android:id="@+id/home"
+                    android:icon="@drawable/home_icon"
+                    android:title="Home" />
+                <item
+                    android:id="@+id/myrides"
+                    android:icon="@drawable/car_black_icon"
+                    android:title="My Rides" />
+                <item
+                    android:id="@+id/profile"
+                    android:icon="@drawable/person_black_icon"
+                    android:title="Profile" />
+            </group>
+        </menu>
+
+    </item>
+    <group android:id="@+id/other_grp">
+        <item
+            android:id="@+id/logout"
+            android:icon="@drawable/logout_icon"
+            android:title="Logout" />
+        <item
+            android:id="@+id/help"
+            android:icon="@drawable/help_black_icon"
+            android:title="Help" />
+    </group>
+
+
+</menu>

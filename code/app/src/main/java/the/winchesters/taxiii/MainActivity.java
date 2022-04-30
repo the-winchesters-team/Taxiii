@@ -19,13 +19,13 @@ public class MainActivity extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        Objects.requireNonNull(getSupportActionBar()).hide();
+      //  Objects.requireNonNull(getSupportActionBar()).hide();
         setContentView(R.layout.activity_main);
         timer = new Timer();
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                Intent intent  = new Intent(MainActivity.this, LoginActivity.class);
+                Intent intent  = new Intent(MainActivity.this, HomeActivity.class);
                 startActivity(intent);
                 finish();
 
