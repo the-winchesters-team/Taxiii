@@ -14,6 +14,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import the.winchesters.taxiii.R;
+import the.winchesters.taxiii.activity.taxi_driver.TaxiDriverMapActivity;
 
 public class MainActivity extends AppCompatActivity {
     Timer timer;
@@ -35,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
                 FirebaseUser currentUser = mAuth.getCurrentUser();
                 Intent intent;
                 if (currentUser != null) {
-                    intent = new Intent(MainActivity.this, HomeActivity.class);
+                    intent = new Intent(MainActivity.this, TaxiDriverMapActivity.class);
                 }else {
                     intent = new Intent(MainActivity.this, LoginOrSignUpActivity.class);
                 }

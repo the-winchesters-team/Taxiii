@@ -4,10 +4,13 @@ import static android.content.ContentValues.TAG;
 
 import android.Manifest;
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -33,10 +36,13 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.Objects;
 
 import the.winchesters.taxiii.R;
+import the.winchesters.taxiii.activity.LoginOrSignUpActivity;
+import the.winchesters.taxiii.activity.ProfileActivity;
 import the.winchesters.taxiii.databinding.ActivityTaxiDriverMapBinding;
 
 public class TaxiDriverMapActivity extends FragmentActivity implements OnMapReadyCallback, LocationListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
+    private FirebaseAuth mAuth;
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
     private GoogleMap map;
     private ActivityTaxiDriverMapBinding binding;
@@ -47,6 +53,7 @@ public class TaxiDriverMapActivity extends FragmentActivity implements OnMapRead
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mAuth = FirebaseAuth.getInstance();
 
         binding = ActivityTaxiDriverMapBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -54,6 +61,34 @@ public class TaxiDriverMapActivity extends FragmentActivity implements OnMapRead
                 .findFragmentById(R.id.map);
         assert mapFragment != null;
         mapFragment.getMapAsync(this);
+        signOut();
+        userSettings();
+    }
+
+    private void signOut() {
+        View logOutButton = findViewById(R.id.map_logout);
+        logOutButton.setOnClickListener(view -> {
+            // when no longer tracked
+            // get current user's id
+            String currentUser = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
+            // get the reference to the "DriverIsAvailable" db
+            DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference("DriverIsAvailable");
+            GeoFire geoFire = new GeoFire(dbRef);
+            geoFire.removeLocation(currentUser);
+            mAuth.signOut();
+            Toast.makeText(TaxiDriverMapActivity.this, "user logged out", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(TaxiDriverMapActivity.this, LoginOrSignUpActivity.class);
+            startActivity(intent);
+            finish();
+        });
+    }
+    private void userSettings(){
+        View userSettingsView = findViewById(R.id.map_user_settings);
+        userSettingsView.setOnClickListener(view -> {
+            Intent intent = new Intent(TaxiDriverMapActivity.this, ProfileActivity.class);
+            startActivity(intent);
+            finish();
+        });
     }
 
     @Override
@@ -157,12 +192,12 @@ public class TaxiDriverMapActivity extends FragmentActivity implements OnMapRead
     protected void onStop() {
         // when no longer tracked
         super.onStop();
-        // get current user's id
-        String currentUser = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
-        // get the reference to the "DriverIsAvailable" db
-        DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference("DriverIsAvailable");
-        GeoFire geoFire = new GeoFire(dbRef);
-        geoFire.removeLocation(currentUser);
+//        // get current user's id
+//        String currentUser = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
+//        // get the reference to the "DriverIsAvailable" db
+//        DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference("DriverIsAvailable");
+//        GeoFire geoFire = new GeoFire(dbRef);
+//        geoFire.removeLocation(currentUser);
 
     }
 }

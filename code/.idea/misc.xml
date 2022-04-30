@@ -3,9 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/edit_text_style2.xml" value="0.151" />
         <entry key="app/src/main/res/drawable/ic_baseline_arrow_back_24.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.145" />
+        <entry key="app/src/main/res/drawable/ic_logout.xml" value="0.151" />
         <entry key="app/src/main/res/drawable/layout_bg.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/profile_header_layout_bg.xml" value="0.22" />
+        <entry key="app/src/main/res/drawable/search_bar_bg.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_client_map.xml" value="0.19895833333333332" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_login2.xml" value="0.1" />
@@ -13,6 +17,8 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1716485507246377" />
         <entry key="app/src/main/res/layout/activity_profile.xml" value="0.3351851851851852" />
         <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/activity_taxi_driver_map.xml" value="0.19895833333333332" />
+        <entry key="app/src/main/res/layout/activity_taxi_driver_map2.xml" value="0.1" />
       </map>
     </option>
   </component>

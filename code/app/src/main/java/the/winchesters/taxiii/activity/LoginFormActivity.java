@@ -12,6 +12,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import the.winchesters.taxiii.R;
+import the.winchesters.taxiii.activity.taxi_driver.TaxiDriverMapActivity;
 
 public class LoginFormActivity extends AppCompatActivity {
 
@@ -46,7 +47,7 @@ public class LoginFormActivity extends AppCompatActivity {
             } else {
                 Toast.makeText(LoginFormActivity.this, "login successful", Toast.LENGTH_SHORT).show();
 
-                Intent intent = new Intent(LoginFormActivity.this, HomeActivity.class);
+                Intent intent = new Intent(LoginFormActivity.this, TaxiDriverMapActivity.class);
                 startActivity(intent);
                 finish();
             }
