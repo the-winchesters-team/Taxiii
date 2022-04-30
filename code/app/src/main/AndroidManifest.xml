@@ -2,8 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="the.winchesters.taxiii">
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
 
     <application
         android:allowBackup="true"
@@ -13,42 +17,55 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Taxiii"
         android:usesCleartextTraffic="true">
-        <activity
-            android:name=".HomeActivity"
-            android:exported="false" />
+
         <!--
-             The API key for Google Maps-based APIs is defined as a string resource.
-             (See the file "res/values/google_maps_api.xml").
-             Note that the API key is linked to the encryption key used to sign the APK.
-             You need a different API key for each encryption key, including the release key that is used to
-             sign the APK for publishing.
-             You can define the keys for the debug and release targets in src/debug/ and src/release/.
+             TODO: Before you run your application, you need a Google Maps API key.
+
+             To get one, follow the directions here:
+
+                https://developers.google.com/maps/documentation/android-sdk/get-api-key
+
+             Once you have your API key (it starts with "AIza"), define a new property in your
+             project's local.properties file (e.g. MAPS_API_KEY=Aiza...), and replace the
+             "YOUR_API_KEY" string in this file with "${MAPS_API_KEY}".
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="@string/google_maps_key" />
+            android:value="YOUR_API_KEY" />
 
         <activity
-            android:name=".activity.TaxiDriverMapActivity"
+            android:name=".activity.ProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.client.ClientMapActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.HomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.taxi_driver.TaxiDriverMapActivity"
             android:exported="false"
             android:label="@string/title_activity_taxi_driver_map" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".activity.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".SignUpActivity"
+            android:name=".activity.client.ClientSignUpActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginFormActivity"
+            android:name=".activity.taxi_driver.TaxiDriverSignUpActivity"
             android:exported="false" />
         <activity
-            android:name=".PickingRoleActivity"
+            android:name=".activity.LoginFormActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginOrSignUpActivity"
+            android:name=".activity.PickingRoleActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.LoginOrSignUpActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

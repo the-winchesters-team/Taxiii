@@ -14,4 +14,20 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="ok">OK</string>
+    <string name="user_is_authenticated">User is authenticated</string>
+    <string name="name_icon">name icon</string>
+    <string name="number_icon">number icon</string>
+    <string name="email">Email</string>
+    <string name="change_password">Change password</string>
+    <string name="gender_icon">gender_icon</string>
+    <string name="gender">Gender</string>
+    <string name="date_icon">date icon</string>
+    <string name="date_of_birth">Date of birth</string>
+    <string name="name">Name</string>
+    <string name="phone_number">Phone number</string>
+    <string name="email_icon">email icon</string>
+    <string name="username">username</string>
+    <string name="back_icon">back icon</string>
+    <string name="title_activity_taxi_driver_map2">TaxiDriverMapActivity2</string>
+    <string name="where_do_you_want_to_go">Where do you want to go ?</string>
 </resources>

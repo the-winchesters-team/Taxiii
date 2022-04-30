@@ -1,5 +1,12 @@
 package the.winchesters.taxiii;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.style.TextAppearanceSpan;
+import android.view.Menu;
+import android.view.MenuItem;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -7,15 +14,10 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.text.SpannableString;
-import android.text.style.TextAppearanceSpan;
-import android.view.Gravity;
-import android.view.Menu;
-import android.view.MenuItem;
-
 import com.google.android.material.navigation.NavigationView;
+
+import the.winchesters.taxiii.activity.LoginActivity;
+import the.winchesters.taxiii.activity.PickingRoleActivity;
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     DrawerLayout drawerLayout;
@@ -77,7 +79,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 Intent intent2 = new Intent(HomeActivity.this, LoginActivity.class);
                 startActivity(intent2);
                 break;
-
 
         }
         drawerLayout.closeDrawer(GravityCompat.START);

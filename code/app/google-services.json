@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "712911603392",
+    "firebase_url": "https://taxiii-winchesters-default-rtdb.europe-west1.firebasedatabase.app",
     "project_id": "taxiii-winchesters",
     "storage_bucket": "taxiii-winchesters.appspot.com"
   },
