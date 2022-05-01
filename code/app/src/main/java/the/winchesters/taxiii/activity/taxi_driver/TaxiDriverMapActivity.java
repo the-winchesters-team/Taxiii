@@ -202,12 +202,12 @@ public class TaxiDriverMapActivity extends NavigationBarActivity implements OnMa
 
     }
 
-    public void removeAvailableDriver(String currentUser){
-//        // get current user's id
-//        // get the reference to the "DriverIsAvailable" db
-//        DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference("DriverIsAvailable");
-//        GeoFire geoFire = new GeoFire(dbRef);
-//        geoFire.removeLocation(currentUser);
+    void removeAvailableDriver(String currentUser){
+        // get current user's id
+        // get the reference to the "DriverIsAvailable" db
+        DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference("DriverIsAvailable");
+        GeoFire geoFire = new GeoFire(dbRef);
+        geoFire.removeLocation(currentUser , (key,err)->{});
     }
 
 }

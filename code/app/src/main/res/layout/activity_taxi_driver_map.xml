@@ -100,7 +100,6 @@
                     app:strokeWidth="3dp" />
             </RelativeLayout>
 
-            <include layout="@layout/activity_navigation_bar_container" />
 
 
             <include layout="@layout/toolbar" />
