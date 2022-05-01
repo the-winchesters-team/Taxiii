@@ -202,7 +202,7 @@ public class TaxiDriverMapActivity extends FragmentActivity implements OnMapRead
         // get the reference to the "DriverIsAvailable" db
         DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference("DriverIsAvailable");
         GeoFire geoFire = new GeoFire(dbRef);
-        geoFire.removeLocation(currentUser);
+        geoFire.removeLocation(currentUser , (key,err)->{});
     }
 
 }
