@@ -54,7 +54,7 @@ public abstract class NavigationBarActivity extends AppCompatActivity implements
             @Override
             public void onClick(View view) {
                 FirebaseAuth.getInstance().signOut();
-                Intent intent = new Intent(NavigationBarActivity.this,PickingRoleActivity.class);
+                Intent intent = new Intent(NavigationBarActivity.this,LoginOrSignUpActivity.class);
                 startActivity(intent);
                 finish();
             }

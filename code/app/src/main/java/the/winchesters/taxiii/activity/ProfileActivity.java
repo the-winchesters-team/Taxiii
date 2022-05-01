@@ -24,7 +24,7 @@ import the.winchesters.taxiii.R;
 import the.winchesters.taxiii.model.Client;
 import the.winchesters.taxiii.model.User;
 
-public class ProfileActivity extends AppCompatActivity {
+public class ProfileActivity extends NavigationBarActivity {
 
     private FirebaseAuth mAuth;
 
@@ -35,6 +35,11 @@ public class ProfileActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         initializeComponents();
         changePassword();
+    }
+
+    @Override
+    protected int getLayoutResourceId() {
+        return R.layout.activity_profile;
     }
 
     private void changePassword() {

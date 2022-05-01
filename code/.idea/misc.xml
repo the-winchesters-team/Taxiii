@@ -12,8 +12,11 @@
         <entry key="..\:/Users/Destock afric/Documents/taxiProject/code/app/src/main/res/drawable/hamburger_icon.xml" value="0.1" />
         <entry key="..\:/Users/Destock afric/Documents/taxiProject/code/app/src/main/res/drawable/item_background.xml" value="0.129" />
         <entry key="..\:/Users/Destock afric/Documents/taxiProject/code/app/src/main/res/drawable/rounded_btn_shape.xml" value="0.108" />
+        <entry key="..\:/Users/Destock afric/Documents/taxiProject/code/app/src/main/res/layout/activity_base.xml" value="0.1796875" />
+        <entry key="..\:/Users/Destock afric/Documents/taxiProject/code/app/src/main/res/layout/activity_client_map.xml" value="0.1796875" />
         <entry key="..\:/Users/Destock afric/Documents/taxiProject/code/app/src/main/res/layout/activity_home.xml" value="0.1" />
         <entry key="..\:/Users/Destock afric/Documents/taxiProject/code/app/src/main/res/layout/activity_login2.xml" value="0.1796875" />
+        <entry key="..\:/Users/Destock afric/Documents/taxiProject/code/app/src/main/res/layout/activity_navigation_bar.xml" value="0.115625" />
         <entry key="..\:/Users/Destock afric/Documents/taxiProject/code/app/src/main/res/layout/activity_profile.xml" value="0.1" />
         <entry key="..\:/Users/Destock afric/Documents/taxiProject/code/app/src/main/res/layout/activity_taxi_driver_map.xml" value="0.1" />
         <entry key="..\:/Users/Destock afric/Documents/taxiProject/code/app/src/main/res/layout/curve_bottom.xml" value="0.1" />
@@ -21,11 +24,6 @@
         <entry key="..\:/Users/Destock afric/Documents/taxiProject/code/app/src/main/res/layout/login_tab_fragment.xml" value="0.1796875" />
         <entry key="..\:/Users/Destock afric/Documents/taxiProject/code/app/src/main/res/layout/toolbar.xml" value="0.1796875" />
         <entry key="..\:/Users/Destock afric/Documents/taxiProject/code/app/src/main/res/menu/main_menu.xml" value="0.1796875" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.19895833333333332" />
-        <entry key="app/src/main/res/layout/activity_navigation_bar.xml" value="0.19895833333333332" />
-        <entry key="app/src/main/res/layout/header.xml" value="0.19895833333333332" />
-        <entry key="app/src/main/res/layout/login.xml" value="0.19895833333333332" />
-        <entry key="app/src/main/res/layout/toolbar.xml" value="0.19895833333333332" />
       </map>
     </option>
   </component>
