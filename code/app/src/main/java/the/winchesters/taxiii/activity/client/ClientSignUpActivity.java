@@ -16,7 +16,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.Objects;
 
 import the.winchesters.taxiii.R;
-import the.winchesters.taxiii.activity.BaseActivity;
+import the.winchesters.taxiii.activity.NavigationBarActivity;
 import the.winchesters.taxiii.model.User;
 
 public class ClientSignUpActivity extends AppCompatActivity {
@@ -76,7 +76,7 @@ public class ClientSignUpActivity extends AppCompatActivity {
                 User user = new User(username,firstName,lastName,number);
                 user_db.setValue(user);
 
-                Intent intent = new Intent(ClientSignUpActivity.this, BaseActivity.class);
+                Intent intent = new Intent(ClientSignUpActivity.this, NavigationBarActivity.class);
                 startActivity(intent);
                 finish();
 
@@ -103,7 +103,7 @@ public class ClientSignUpActivity extends AppCompatActivity {
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
-            Intent intent = new Intent(ClientSignUpActivity.this, BaseActivity.class);
+            Intent intent = new Intent(ClientSignUpActivity.this, NavigationBarActivity.class);
             startActivity(intent);
             finish();
         }
