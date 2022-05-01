@@ -49,17 +49,6 @@ public abstract class NavigationBarActivity extends AppCompatActivity implements
         //
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setCheckedItem(R.id.home);
-        //logout
-        logoutImageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FirebaseAuth.getInstance().signOut();
-                Intent intent = new Intent(NavigationBarActivity.this,PickingRoleActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-
     }
 
     protected abstract int getLayoutResourceId();
@@ -83,6 +72,17 @@ public abstract class NavigationBarActivity extends AppCompatActivity implements
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        //logout
+        logoutImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(NavigationBarActivity.this,PickingRoleActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
         switch (item.getItemId()) {
             case R.id.home:
                 break;
