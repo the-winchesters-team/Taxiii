@@ -2,14 +2,11 @@ package the.winchesters.taxiii.activity;
 
 import static android.content.ContentValues.TAG;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -21,10 +18,9 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.Objects;
 
 import the.winchesters.taxiii.R;
-import the.winchesters.taxiii.model.Client;
 import the.winchesters.taxiii.model.User;
 
-public class ProfileActivity extends AppCompatActivity {
+public class ProfileActivity extends NavigationBarActivity {
 
     private FirebaseAuth mAuth;
 
@@ -35,6 +31,11 @@ public class ProfileActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         initializeComponents();
         changePassword();
+    }
+
+    @Override
+    protected int getLayoutResourceId() {
+        return R.layout.activity_profile;
     }
 
     private void changePassword() {
