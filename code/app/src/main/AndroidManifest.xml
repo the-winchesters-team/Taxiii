@@ -40,7 +40,7 @@
             android:name=".activity.client.ClientMapActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.BaseActivity"
+            android:name=".activity.NavigationBarActivity"
             android:exported="false" />
         <activity
             android:name=".activity.taxi_driver.TaxiDriverMapActivity"

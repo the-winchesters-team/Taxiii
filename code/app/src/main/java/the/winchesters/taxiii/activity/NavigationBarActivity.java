@@ -6,6 +6,8 @@ import android.text.SpannableString;
 import android.text.style.TextAppearanceSpan;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -15,18 +17,20 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 import the.winchesters.taxiii.R;
 
-public class BaseActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public abstract class NavigationBarActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     DrawerLayout drawerLayout;
     Toolbar toolbar;
     NavigationView navigationView;
+    ImageView logoutImageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_base);
+        setContentView(getLayoutResourceId());
         initializeComponents();
         //customise group title
         Menu menu = navigationView.getMenu();
@@ -45,14 +49,26 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         //
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setCheckedItem(R.id.home);
+        //logout
+        logoutImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(NavigationBarActivity.this,PickingRoleActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
     }
+
+    protected abstract int getLayoutResourceId();
 
     private void initializeComponents() {
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
         toolbar = findViewById(R.id.toolbar);
-
+        logoutImageView =findViewById(R.id.logout_icon);
     }
 
     @Override
@@ -65,18 +81,17 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
-
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.home:
                 break;
             case R.id.profile:
-                Intent intent = new Intent(BaseActivity.this, ProfileActivity.class);
+                Intent intent = new Intent(NavigationBarActivity.this, ProfileActivity.class);
                 startActivity(intent);
                 break;
             case R.id.myrides:
-                Intent intent2 = new Intent(BaseActivity.this, LoginActivity.class);
+                Intent intent2 = new Intent(NavigationBarActivity.this, LoginActivity.class);
                 startActivity(intent2);
                 break;
 

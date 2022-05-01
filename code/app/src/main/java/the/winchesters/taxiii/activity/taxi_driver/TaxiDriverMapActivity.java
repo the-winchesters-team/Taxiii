@@ -15,7 +15,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
-import androidx.fragment.app.FragmentActivity;
 
 import com.firebase.geofire.GeoFire;
 import com.firebase.geofire.GeoLocation;
@@ -37,11 +36,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.Objects;
 
 import the.winchesters.taxiii.R;
+import the.winchesters.taxiii.activity.NavigationBarActivity;
 import the.winchesters.taxiii.activity.LoginOrSignUpActivity;
 import the.winchesters.taxiii.activity.ProfileActivity;
 import the.winchesters.taxiii.databinding.ActivityTaxiDriverMapBinding;
 
-public class TaxiDriverMapActivity extends FragmentActivity implements OnMapReadyCallback, LocationListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
+public class TaxiDriverMapActivity extends NavigationBarActivity implements OnMapReadyCallback, LocationListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
     private FirebaseAuth mAuth;
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
@@ -55,9 +55,8 @@ public class TaxiDriverMapActivity extends FragmentActivity implements OnMapRead
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mAuth = FirebaseAuth.getInstance();
-
-        binding = ActivityTaxiDriverMapBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+//        binding = ActivityTaxiDriverMapBinding.inflate(getLayoutInflater());
+//        setContentView(binding.getRoot());
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         assert mapFragment != null;
@@ -65,6 +64,12 @@ public class TaxiDriverMapActivity extends FragmentActivity implements OnMapRead
         signOut();
         userSettings();
     }
+
+    @Override
+    protected int getLayoutResourceId() {
+        return R.layout.activity_taxi_driver_map;
+    }
+
 
     private void signOut() {
         View logOutButton = findViewById(R.id.map_logout);
