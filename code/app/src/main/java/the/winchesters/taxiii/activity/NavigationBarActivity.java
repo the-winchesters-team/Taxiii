@@ -74,17 +74,6 @@ public abstract class NavigationBarActivity extends AppCompatActivity implements
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        //logout
-        logoutImageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FirebaseAuth.getInstance().signOut();
-                Intent intent = new Intent(NavigationBarActivity.this,LoginOrSignUpActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-        //
         switch (item.getItemId()) {
             case R.id.home:
                 break;
@@ -95,6 +84,12 @@ public abstract class NavigationBarActivity extends AppCompatActivity implements
             case R.id.myrides:
                 Intent intent2 = new Intent(NavigationBarActivity.this, LoginActivity.class);
                 startActivity(intent2);
+                break;
+            case  R.id.logout:
+                FirebaseAuth.getInstance().signOut();
+                Intent intent3 = new Intent(NavigationBarActivity.this,LoginOrSignUpActivity.class);
+                startActivity(intent3);
+                finish();
                 break;
 
         }

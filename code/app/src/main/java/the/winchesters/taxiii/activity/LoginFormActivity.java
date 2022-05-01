@@ -47,7 +47,7 @@ public class LoginFormActivity extends AppCompatActivity {
             } else {
                 Toast.makeText(LoginFormActivity.this, "login successful", Toast.LENGTH_SHORT).show();
 
-                Intent intent = new Intent(LoginFormActivity.this, TaxiDriverMapActivity.class);
+                Intent intent = new Intent(LoginFormActivity.this, ProfileActivity.class);
                 startActivity(intent);
                 finish();
             }

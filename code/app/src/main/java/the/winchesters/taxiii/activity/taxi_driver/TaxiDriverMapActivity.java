@@ -75,7 +75,7 @@ public class TaxiDriverMapActivity extends NavigationBarActivity implements OnMa
         View logOutButton = findViewById(R.id.map_logout);
         logOutButton.setOnClickListener(view -> {
             FirebaseUser currentUser = mAuth.getCurrentUser();
-            if(currentUser!=null){
+            if (currentUser != null) {
                 removeAvailableDriver(currentUser.getUid());
                 mAuth.signOut();
             }
@@ -85,7 +85,8 @@ public class TaxiDriverMapActivity extends NavigationBarActivity implements OnMa
             finish();
         });
     }
-    private void userSettings(){
+
+    private void userSettings() {
         View userSettingsView = findViewById(R.id.map_user_settings);
         userSettingsView.setOnClickListener(view -> {
             Intent intent = new Intent(TaxiDriverMapActivity.this, ProfileActivity.class);
@@ -196,18 +197,19 @@ public class TaxiDriverMapActivity extends NavigationBarActivity implements OnMa
         // when no longer tracked
         super.onStop();
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        if(currentUser!=null){
+        if (currentUser != null) {
             removeAvailableDriver(currentUser.getUid());
         }
 
     }
 
-    void removeAvailableDriver(String currentUser){
+    void removeAvailableDriver(String currentUser) {
         // get current user's id
         // get the reference to the "DriverIsAvailable" db
         DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference("DriverIsAvailable");
         GeoFire geoFire = new GeoFire(dbRef);
-        geoFire.removeLocation(currentUser , (key,err)->{});
+        geoFire.removeLocation(currentUser, (key, err) -> {
+        });
     }
 
 }
