@@ -6,6 +6,8 @@ import android.text.SpannableString;
 import android.text.style.TextAppearanceSpan;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -15,6 +17,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 import the.winchesters.taxiii.R;
 
@@ -22,6 +25,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
     DrawerLayout drawerLayout;
     Toolbar toolbar;
     NavigationView navigationView;
+    ImageView logoutImageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +49,16 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         //
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setCheckedItem(R.id.home);
+        //logout
+        logoutImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(BaseActivity.this,PickingRoleActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
     }
 
@@ -52,6 +66,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
         toolbar = findViewById(R.id.toolbar);
+        logoutImageView =findViewById(R.id.logout_icon);
 
     }
 
