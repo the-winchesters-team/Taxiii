@@ -66,7 +66,7 @@ public class MyMapUtils {
         for (TaxiDriver taxiDriver : taxiDrivers.values()){
             map.addMarker(new MarkerOptions()
                     .position(
-                            taxiDriver.getLocation()
+                            new LatLng(taxiDriver.getLocation().getLatitude(),taxiDriver.getLocation().getLongitude())
                     )
                     .title("Taxi : "+taxiDriver.getFirstName() + " " + taxiDriver.getLastName())
             );

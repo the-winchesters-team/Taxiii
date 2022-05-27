@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
+//                FirebaseAuth.getInstance().signOut();
                 FirebaseUser currentUser = mAuth.getCurrentUser();
                 Intent intent;
                 if (currentUser != null) {

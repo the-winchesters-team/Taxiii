@@ -94,9 +94,15 @@ public class TaxiDriverMapActivity extends FragmentActivity implements OnMapRead
         map.animateCamera(CameraUpdateFactory.zoomTo(10));
         String currentUser = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
         DatabaseReference refAvailable = FirebaseDatabase.getInstance().getReference("driversAvailable");
-        GeoFire geoFireAvailable = new GeoFire(refAvailable);
-        GeoLocation updatedLocation = new GeoLocation(location.getLatitude(),location.getLongitude());
-        geoFireAvailable.setLocation(currentUser,updatedLocation,(key,err)->{});
+        DatabaseReference ref = refAvailable.child(currentUser);
+        ref.setValue(new LatLng(
+                lastKnownLocation.getLatitude(),
+                lastKnownLocation.getLongitude()
+            )
+        );
+//        GeoFire geoFireAvailable = new GeoFire(refAvailable);
+//        GeoLocation updatedLocation = new GeoLocation(location.getLatitude(),location.getLongitude());
+//        geoFireAvailable.setLocation(currentUser,updatedLocation,(key,err)->{});
     }
 
 
@@ -129,10 +135,10 @@ public class TaxiDriverMapActivity extends FragmentActivity implements OnMapRead
     @Override
     protected void onStop() {
         super.onStop();
-        String currentUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("driversAvailable");
-
-        GeoFire geoFire = new GeoFire(ref);
-        geoFire.removeLocation(currentUser , (key,err)->{});
+//        String currentUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
+//        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("driversAvailable");
+//
+//        GeoFire geoFire = new GeoFire(ref);
+//        geoFire.removeLocation(currentUser , (key,err)->{});
     }
 }

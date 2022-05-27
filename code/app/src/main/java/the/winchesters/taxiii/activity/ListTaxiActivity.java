@@ -21,6 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.Map;
 
 import the.winchesters.taxiii.R;
+import the.winchesters.taxiii.model.MyLatLng;
 import the.winchesters.taxiii.model.TaxiDriver;
 
 public class ListTaxiActivity extends AppCompatActivity {
@@ -41,12 +42,12 @@ public class ListTaxiActivity extends AppCompatActivity {
         driverIsAvailableRef.addChildEventListener(new ChildEventListener() {
             String taxiDriverId;
             TaxiDriver taxiDriver;
-            LatLng location;
+            MyLatLng location;
 
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 taxiDriverId = snapshot.getKey();
-                location = snapshot.getValue(LatLng.class);
+                location = snapshot.getValue(MyLatLng.class);
                 DatabaseReference driverRef = FirebaseDatabase.getInstance()
                         .getReference("User")
                         .child("TaxiDriver")
@@ -71,7 +72,7 @@ public class ListTaxiActivity extends AppCompatActivity {
             @Override
             public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 taxiDriverId = snapshot.getKey();
-                location = snapshot.getValue(LatLng.class);
+                location = snapshot.getValue(MyLatLng.class);
                 taxiDriver = taxiDrivers.get(taxiDriverId);
                 assert taxiDriver != null;
                 taxiDriver.setLocation(location);
