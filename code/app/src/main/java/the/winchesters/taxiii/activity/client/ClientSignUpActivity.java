@@ -19,6 +19,7 @@ import java.util.Objects;
 
 import the.winchesters.taxiii.R;
 import the.winchesters.taxiii.activity.NavigationBarActivity;
+import the.winchesters.taxiii.model.Client;
 import the.winchesters.taxiii.model.Role;
 import the.winchesters.taxiii.model.User;
 
@@ -74,13 +75,12 @@ public class ClientSignUpActivity extends AppCompatActivity {
                 Toast.makeText(ClientSignUpActivity.this, String.format("user %s registered", user_id), Toast.LENGTH_SHORT).show();
                 DatabaseReference user_db = FirebaseDatabase.getInstance().getReference()
                         .child("User")
-                        .child("Client")
                         .child(user_id);
 
-                User user = new User(CLIENT,username,firstName,lastName,number);
+                User user = new Client(username,firstName,lastName,number);
                 user_db.setValue(user);
 
-                Intent intent = new Intent(ClientSignUpActivity.this, NavigationBarActivity.class);
+                Intent intent = new Intent(ClientSignUpActivity.this, ClientMapActivity.class);
                 startActivity(intent);
                 finish();
 
