@@ -39,11 +39,8 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent;
                 if (currentUser != null) {
                     intent = new Intent(MainActivity.this, ClientMapActivity.class);
-                        Bundle b = new Bundle();
-                    b.putDouble("lat", 37.4219983);
-                    b.putDouble("long", -122.084);
-                    intent.putExtras(b);
                 }else {
+
                     intent = new Intent(MainActivity.this, LoginOrSignUpActivity.class);
                 }
                 startActivity(intent);

@@ -1,5 +1,7 @@
 package the.winchesters.taxiii.activity.client;
 
+import static the.winchesters.taxiii.model.Role.CLIENT;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
@@ -17,6 +19,7 @@ import java.util.Objects;
 
 import the.winchesters.taxiii.R;
 import the.winchesters.taxiii.activity.NavigationBarActivity;
+import the.winchesters.taxiii.model.Role;
 import the.winchesters.taxiii.model.User;
 
 public class ClientSignUpActivity extends AppCompatActivity {
@@ -61,6 +64,7 @@ public class ClientSignUpActivity extends AppCompatActivity {
     }
 
     private void signUp(String email, String password,String username,String firstName,String lastName,String number) {
+
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(ClientSignUpActivity.this, task -> {
             if (!task.isSuccessful()) {
                 Objects.requireNonNull(task.getException()).printStackTrace();
@@ -73,7 +77,7 @@ public class ClientSignUpActivity extends AppCompatActivity {
                         .child("Client")
                         .child(user_id);
 
-                User user = new User(username,firstName,lastName,number);
+                User user = new User(CLIENT,username,firstName,lastName,number);
                 user_db.setValue(user);
 
                 Intent intent = new Intent(ClientSignUpActivity.this, NavigationBarActivity.class);
