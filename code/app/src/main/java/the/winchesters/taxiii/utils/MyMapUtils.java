@@ -8,6 +8,8 @@ import android.os.Bundle;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
 
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -45,5 +47,11 @@ public class MyMapUtils {
         } else {
             return true;
         }
+    }
+    public static GoogleApiClient.Builder getMapBuilder(ClientMapActivity clientMapActivity){
+        GoogleApiClient.Builder builder = new GoogleApiClient.Builder(clientMapActivity);
+        builder.addApi(LocationServices.API);
+        builder.addConnectionCallbacks(clientMapActivity);
+        return builder.addOnConnectionFailedListener(clientMapActivity);
     }
 }

@@ -1,26 +1,19 @@
 package the.winchesters.taxiii.activity.client;
 
 import static the.winchesters.taxiii.utils.MyMapUtils.checkLocationPermission;
+import static the.winchesters.taxiii.utils.MyMapUtils.getMapBuilder;
+
+import android.location.Location;
+import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 
-import android.Manifest;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.pm.PackageManager;
-import android.location.Location;
-import android.os.Bundle;
-import android.util.Log;
-
-import com.firebase.geofire.GeoFire;
-import com.firebase.geofire.GeoLocation;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
+import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -28,23 +21,14 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.location.LocationRequest;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
-import java.util.List;
-import java.util.Objects;
 
 import the.winchesters.taxiii.R;
-import the.winchesters.taxiii.activity.NavigationBarActivity;
 import the.winchesters.taxiii.databinding.ActivityTaxiDriverMapBinding;
 
 public class ClientMapActivity extends FragmentActivity implements OnMapReadyCallback, LocationListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
     private GoogleMap map;
     private ActivityTaxiDriverMapBinding binding;
-    private Location lastKnownLocation;
     private LocationRequest locationRequest;
     private GoogleApiClient googleApiClient;
 
@@ -84,27 +68,12 @@ public class ClientMapActivity extends FragmentActivity implements OnMapReadyCal
     }
 
     private synchronized void buildClient() {
-        GoogleApiClient.Builder builder = new GoogleApiClient.Builder(this);
-        builder.addApi(LocationServices.API);
-        builder.addConnectionCallbacks(this);
-        builder.addOnConnectionFailedListener(this);
-        googleApiClient = builder.build();
+        googleApiClient = getMapBuilder(this).build();
         googleApiClient.connect();
     }
 
     @Override
     public void onLocationChanged(@NonNull Location location) {
-        lastKnownLocation = location;
-        Log.d("debug", location.toString());
-//        map.moveCamera(
-//                CameraUpdateFactory.newLatLng(
-//                        new LatLng(
-//                                lastKnownLocation.getLatitude(),
-//                                lastKnownLocation.getLongitude()
-//                        )
-//                )
-//        );
-//        map.animateCamera(CameraUpdateFactory.zoomTo(10));
     }
 
 
@@ -123,7 +92,6 @@ public class ClientMapActivity extends FragmentActivity implements OnMapReadyCal
         if (!checkLocationPermission(this))
             return;
         LocationServices.FusedLocationApi.requestLocationUpdates(googleApiClient, locationRequest, this);
-
     }
 
     @Override
