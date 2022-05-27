@@ -16,9 +16,12 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.Map;
+
 import the.winchesters.taxiii.R;
 import the.winchesters.taxiii.activity.client.ClientMapActivity;
 import the.winchesters.taxiii.databinding.ActivityTaxiDriverMapBinding;
+import the.winchesters.taxiii.model.TaxiDriver;
 
 public class MyMapUtils {
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
@@ -53,5 +56,15 @@ public class MyMapUtils {
         builder.addApi(LocationServices.API);
         builder.addConnectionCallbacks(clientMapActivity);
         return builder.addOnConnectionFailedListener(clientMapActivity);
+    }
+    public static void updateTaxiDriversLocations(Map<String, TaxiDriver> taxiDrivers, GoogleMap map){
+        for (TaxiDriver taxiDriver : taxiDrivers.values()){
+            map.addMarker(new MarkerOptions()
+                    .position(
+                            taxiDriver.getLocation()
+                    )
+                    .title("Taxi : "+taxiDriver.getFirstName() + " " + taxiDriver.getLastName())
+            );
+        }
     }
 }
