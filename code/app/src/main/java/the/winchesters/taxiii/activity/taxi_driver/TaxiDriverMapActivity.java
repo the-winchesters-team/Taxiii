@@ -1,5 +1,7 @@
 package the.winchesters.taxiii.activity.taxi_driver;
 
+import static the.winchesters.taxiii.utils.MyMapUtils.checkLocationPermission;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
@@ -62,7 +64,7 @@ public class TaxiDriverMapActivity extends FragmentActivity implements OnMapRead
     public void onMapReady(GoogleMap googleMap) {
         map = googleMap;
 
-        if (!checkLocationPermission())
+        if (!checkLocationPermission(this))
             return;
         buildClient();
         map.setMyLocationEnabled(true);
@@ -110,7 +112,7 @@ public class TaxiDriverMapActivity extends FragmentActivity implements OnMapRead
                 .setFastestInterval(1000)
                 // high accuracy because we need the drivers accurate location
                 .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-        if (!checkLocationPermission())
+        if (!checkLocationPermission(this))
             return;
         LocationServices.FusedLocationApi.requestLocationUpdates(googleApiClient, locationRequest, this);
     }
@@ -123,31 +125,6 @@ public class TaxiDriverMapActivity extends FragmentActivity implements OnMapRead
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
-    }
-    public boolean checkLocationPermission() {
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                    Manifest.permission.ACCESS_FINE_LOCATION)) {
-                new AlertDialog.Builder(this)
-                        .setTitle(R.string.title_location_permission)
-                        .setMessage(R.string.text_location_permission)
-                        .setPositiveButton(R.string.ok, (dialogInterface, i) -> ActivityCompat.requestPermissions(TaxiDriverMapActivity.this,
-                                new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                                MY_PERMISSIONS_REQUEST_LOCATION))
-                        .create()
-                        .show();
-
-
-            } else {
-                ActivityCompat.requestPermissions(this,
-                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                        MY_PERMISSIONS_REQUEST_LOCATION);
-            }
-            return false;
-        } else {
-            return true;
-        }
     }
     @Override
     protected void onStop() {
