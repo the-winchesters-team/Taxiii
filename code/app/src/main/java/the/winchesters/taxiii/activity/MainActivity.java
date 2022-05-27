@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
                 if (currentUser != null) {
                     intent = new Intent(MainActivity.this, TaxiDriverMapActivity.class);
                 }else {
-                    intent = new Intent(MainActivity.this, LoginOrSignUpActivity.class);
+                    intent = new Intent(MainActivity.this, TaxiDriverMapActivity.class);
                 }
                 startActivity(intent);
                 finish();
