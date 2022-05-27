@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
                 FirebaseUser currentUser = mAuth.getCurrentUser();
                 Intent intent;
                 if (currentUser != null) {
+                    //TODO : check role
                     intent = new Intent(MainActivity.this, TaxiDriverMapActivity.class);
                 }else {
                     intent = new Intent(MainActivity.this, LoginOrSignUpActivity.class);

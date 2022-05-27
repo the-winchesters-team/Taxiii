@@ -16,6 +16,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.Objects;
 
 import the.winchesters.taxiii.R;
+import the.winchesters.taxiii.activity.LoginFormActivity;
 import the.winchesters.taxiii.activity.NavigationBarActivity;
 import the.winchesters.taxiii.model.TaxiDriver;
 import the.winchesters.taxiii.model.User;
@@ -77,7 +78,7 @@ public class TaxiDriverSignUpActivity extends AppCompatActivity {
                 User user = new TaxiDriver(username,firstName,lastName,number);
                 user_db.setValue(user);
 
-                Intent intent = new Intent(TaxiDriverSignUpActivity.this, NavigationBarActivity.class);
+                Intent intent = new Intent(TaxiDriverSignUpActivity.this, LoginFormActivity.class);
                 startActivity(intent);
                 finish();
 
@@ -104,7 +105,7 @@ public class TaxiDriverSignUpActivity extends AppCompatActivity {
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
-            Intent intent = new Intent(TaxiDriverSignUpActivity.this, NavigationBarActivity.class);
+            Intent intent = new Intent(TaxiDriverSignUpActivity.this, LoginFormActivity.class);
             startActivity(intent);
             finish();
         }

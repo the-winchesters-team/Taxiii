@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -45,24 +46,24 @@ public class ProfileActivity extends NavigationBarActivity {
         });
     }
 
-    public void initializeComponents(){
+    public void initializeComponents() {
 
-        TextView usernameView = (TextView)findViewById(R.id.profile_username);
-        TextView fullNameView = (TextView)findViewById(R.id.profile_name);
-        TextView emailView = (TextView)findViewById(R.id.profile_email);
-        TextView genderView = (TextView)findViewById(R.id.profile_gender);
-        TextView dateOfBirthView = (TextView)findViewById(R.id.profile_date_of_birth);
-        TextView numberView = (TextView)findViewById(R.id.profile_phone_number);
+        TextView usernameView = (TextView) findViewById(R.id.profile_username);
+        TextView fullNameView = (TextView) findViewById(R.id.profile_name);
+        TextView emailView = (TextView) findViewById(R.id.profile_email);
+        TextView genderView = (TextView) findViewById(R.id.profile_gender);
+        TextView dateOfBirthView = (TextView) findViewById(R.id.profile_date_of_birth);
+        TextView numberView = (TextView) findViewById(R.id.profile_phone_number);
 
         String userId = Objects.requireNonNull(mAuth.getCurrentUser()).getUid();
-        DatabaseReference userDbRef = FirebaseDatabase.getInstance().getReference(String.format("User/Client/%s",userId));
+        DatabaseReference userDbRef = FirebaseDatabase.getInstance().getReference(String.format("User/Client/%s", userId));
         userDbRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 User user = snapshot.getValue(User.class);
                 assert user != null;
                 usernameView.setText(user.getUsername());
-                fullNameView.setText(String.format("%s %s",user.getFirstName(),user.getLastName()));
+                fullNameView.setText(String.format("%s %s", user.getFirstName(), user.getLastName()));
                 emailView.setText(mAuth.getCurrentUser().getEmail());
                 numberView.setText(user.getPhoneNumber());
             }
