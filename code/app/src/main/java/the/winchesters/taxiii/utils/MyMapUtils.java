@@ -2,8 +2,10 @@ package the.winchesters.taxiii.utils;
 
 import android.Manifest;
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
@@ -15,10 +17,13 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Map;
 
 import the.winchesters.taxiii.R;
+import the.winchesters.taxiii.activity.LoginOrSignUpActivity;
+import the.winchesters.taxiii.activity.NavigationBarActivity;
 import the.winchesters.taxiii.activity.client.ClientMapActivity;
 import the.winchesters.taxiii.databinding.ActivityTaxiDriverMapBinding;
 import the.winchesters.taxiii.model.TaxiDriver;

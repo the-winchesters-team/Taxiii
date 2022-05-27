@@ -3,8 +3,10 @@ package the.winchesters.taxiii.activity.client;
 import static the.winchesters.taxiii.utils.MyMapUtils.checkLocationPermission;
 import static the.winchesters.taxiii.utils.MyMapUtils.getMapBuilder;
 
+import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,6 +25,9 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import the.winchesters.taxiii.R;
+import the.winchesters.taxiii.activity.LoginFormActivity;
+import the.winchesters.taxiii.activity.LoginOrSignUpActivity;
+import the.winchesters.taxiii.activity.MainActivity;
 import the.winchesters.taxiii.databinding.ActivityTaxiDriverMapBinding;
 
 public class ClientMapActivity extends FragmentActivity implements OnMapReadyCallback, LocationListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
@@ -41,6 +46,10 @@ public class ClientMapActivity extends FragmentActivity implements OnMapReadyCal
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+        TextView returnBack = (TextView) findViewById(R.id.return_back);
+        returnBack.setOnClickListener(view -> {
+            super.onBackPressed();
+        });
     }
 
     @Override
