@@ -1,21 +1,27 @@
 package the.winchesters.taxiii.activity.client;
 
 import static android.content.ContentValues.TAG;
+import static the.winchesters.taxiii.utils.MyMapUtils.checkLocationPermission;
+import static the.winchesters.taxiii.utils.MyMapUtils.getMapBuilder;
+import static the.winchesters.taxiii.utils.MyMapUtils.updateTaxiDriversLocations;
 
 import android.Manifest;
-import android.app.AlertDialog;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 
-import com.firebase.geofire.GeoFire;
-import com.firebase.geofire.GeoLocation;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
@@ -26,66 +32,137 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.firebase.auth.FirebaseAuth;
+import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-import java.util.Objects;
+import java.util.HashMap;
+import java.util.Map;
 
 import the.winchesters.taxiii.R;
+import the.winchesters.taxiii.activity.LoginFormActivity;
+import the.winchesters.taxiii.activity.LoginOrSignUpActivity;
+import the.winchesters.taxiii.activity.MainActivity;
+import the.winchesters.taxiii.databinding.ActivityClientMapBinding;
 import the.winchesters.taxiii.databinding.ActivityTaxiDriverMapBinding;
+import the.winchesters.taxiii.model.MyLatLng;
+import the.winchesters.taxiii.model.TaxiDriver;
 
 public class ClientMapActivity extends FragmentActivity implements OnMapReadyCallback, LocationListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
-    public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
     private GoogleMap map;
-    private ActivityTaxiDriverMapBinding binding;
-    private Location lastKnownLocation;
+    private ActivityClientMapBinding binding;
     private LocationRequest locationRequest;
+    private Location lastKnownLocation;
     private GoogleApiClient googleApiClient;
-
+    private Map<String, TaxiDriver> taxiDrivers= new HashMap<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding = ActivityTaxiDriverMapBinding.inflate(getLayoutInflater());
+        binding = ActivityClientMapBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
-        assert mapFragment != null;
+                .findFragmentById(R.id.client_map);
         mapFragment.getMapAsync(this);
+        TextView returnBack = (TextView) findViewById(R.id.logout);
+        returnBack.setOnClickListener(view -> {
+            super.onBackPressed();
+
+        });
+        View requestTaxiBtn = findViewById(R.id.request_taxi);
+        requestTaxiBtn.setOnClickListener(view -> requestTaxi());
+        startTaxiDriverListener();
+    }
+
+    private void requestTaxi() {
+        TaxiDriver taxiDriver = getMostApproximateTD();
+        taxiDriver.setPhoneNumber("0658040125");
+        Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + taxiDriver.getPhoneNumber()));
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.CALL_PHONE)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.CALL_PHONE}, 1);
+
+            // MY_PERMISSIONS_REQUEST_CALL_PHONE is an
+            // app-defined int constant. The callback method gets the
+            // result of the request.
+        } else {
+            //You already have permission
+            try {
+                startActivity(intent);
+            } catch(SecurityException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private TaxiDriver getMostApproximateTD(){
+
+        TaxiDriver approximateTD = null;
+        float distance=100000000000f;
+        float newDistance;
+        float[] results=new float[4];
+
+        for(TaxiDriver taxiDriver:taxiDrivers.values()){
+            Location.distanceBetween(
+                    lastKnownLocation
+                            .getLatitude(),
+                    lastKnownLocation.getLongitude(),
+                    taxiDriver.getLocation().getLatitude(),
+                    taxiDriver.getLocation().getLongitude(),
+                    results
+                    );
+
+            newDistance = results[0];
+            if(newDistance<distance){
+                distance=newDistance;
+                approximateTD=taxiDriver;
+            }
+        }
+        return approximateTD;
+
     }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
         map = googleMap;
-        if (!checkLocationPermission())
+        if (!checkLocationPermission(this))
             return;
         buildClient();
         map.setMyLocationEnabled(true);
+        // set to driver's mark
+        // get latlng
+        Bundle b = getIntent().getExtras();
+        if (b == null) return;
+        if (b.getDouble("lat") == 0.0 || b.getDouble("long") == 0.0) return;
+        googleMap.addMarker(new MarkerOptions()
+                .position(
+                        new LatLng(b.getDouble("lat"),b.getDouble("long"))
+                )
+                .title("Taxi"));
+        map.moveCamera(
+                CameraUpdateFactory.newLatLng(
+                        new LatLng(b.getDouble("lat"),b.getDouble("long"))
+                )
+        );
+    }
 
+    private synchronized void buildClient() {
+        googleApiClient = getMapBuilder(this).build();
+        googleApiClient.connect();
     }
 
     @Override
     public void onLocationChanged(@NonNull Location location) {
+
         lastKnownLocation = location;
-        Log.d("debug", location.toString());
-        map.moveCamera(
-                CameraUpdateFactory.newLatLng(
-                        new LatLng(
-                                lastKnownLocation.getLatitude(),
-                                lastKnownLocation.getLongitude()
-                        )
-                )
-        );
-        map.animateCamera(CameraUpdateFactory.zoomBy(15));
-        // get current user's id
-        String currentUser = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
-        // get the reference to the "DriverIsAvailable" db
-        DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference("DriverIsAvailable");
-        GeoLocation geoLocation = new GeoLocation(lastKnownLocation.getLatitude(), lastKnownLocation.getLongitude());
-        GeoFire geoFire = new GeoFire(dbRef);
-        geoFire.setLocation(currentUser, geoLocation, (key, error) -> Log.e(TAG, "GeoFire Complete"));
     }
 
 
@@ -93,16 +170,15 @@ public class ClientMapActivity extends FragmentActivity implements OnMapReadyCal
     public void onPointerCaptureChanged(boolean hasCapture) {
 
     }
-
     @Override
     public void onConnected(@Nullable Bundle bundle) {
         locationRequest = new LocationRequest()
                 //every second
                 .setInterval(1000)
+                .setFastestInterval(1000)
                 // high accuracy because we need the drivers accurate location
-                .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
-        ;
-        if (!checkLocationPermission())
+                .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+        if (!checkLocationPermission(this))
             return;
         LocationServices.FusedLocationApi.requestLocationUpdates(googleApiClient, locationRequest, this);
     }
@@ -116,53 +192,70 @@ public class ClientMapActivity extends FragmentActivity implements OnMapReadyCal
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
     }
+    public void startTaxiDriverListener() {
+        DatabaseReference driverIsAvailableRef = FirebaseDatabase.getInstance().getReference("driversAvailable");
+        driverIsAvailableRef.addChildEventListener(new ChildEventListener() {
+            String taxiDriverId;
+            TaxiDriver taxiDriver = new TaxiDriver();
+            MyLatLng location;
 
-    public boolean checkLocationPermission() {
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                taxiDriverId = snapshot.getKey();
+                location = snapshot.getValue(MyLatLng.class);
+                DatabaseReference driverRef = FirebaseDatabase.getInstance()
+                        .getReference("User")
+                        .child("TaxiDriver")
+                        .child(taxiDriverId);
+                Log.i(TAG,"taxi driver id "+taxiDriverId);
+                driverRef.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                    Manifest.permission.ACCESS_FINE_LOCATION)) {
-                new AlertDialog.Builder(this)
-                        .setTitle(R.string.title_location_permission)
-                        .setMessage(R.string.text_location_permission)
-                        .setPositiveButton(R.string.ok, (dialogInterface, i) -> ActivityCompat.requestPermissions(ClientMapActivity.this,
-                                new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                                MY_PERMISSIONS_REQUEST_LOCATION))
-                        .create()
-                        .show();
+                        taxiDriver = snapshot.getValue(TaxiDriver.class);
+                    }
 
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        Log.w(TAG, "loadPost:onCancelled", error.toException());
+                    }
+                });
+                taxiDriver.setLocation(location);
+                taxiDrivers.put(taxiDriverId, taxiDriver);
+                Log.i(TAG, taxiDriver.toString());
+                updateTaxiDriversLocations(taxiDrivers,map);
 
-            } else {
-                ActivityCompat.requestPermissions(this,
-                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                        MY_PERMISSIONS_REQUEST_LOCATION);
             }
-            return false;
-        } else {
-            return true;
-        }
-    }
 
-    private synchronized void buildClient() {
-        googleApiClient = new GoogleApiClient
-                .Builder(this)
-                .addApi(LocationServices.API)
-                .addConnectionCallbacks(this)
-                .addOnConnectionFailedListener(this)
-                .build();
-        googleApiClient.connect();
-    }
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                taxiDriverId = snapshot.getKey();
+                location = snapshot.getValue(MyLatLng.class);
+                taxiDriver = taxiDrivers.get(taxiDriverId);
+                assert taxiDriver != null;
+                taxiDriver.setLocation(location);
+                taxiDrivers.put(taxiDriverId, taxiDriver);
+                Log.i(TAG, taxiDriver.toString());
+                updateTaxiDriversLocations(taxiDrivers,map);
+            }
 
-    @Override
-    protected void onStop() {
-        // when no longer tracked
-        super.onStop();
-        // get current user's id
-        String currentUser = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
-        // get the reference to the "DriverIsAvailable" db
-        DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference("DriverIsAvailable");
-        GeoFire geoFire = new GeoFire(dbRef);
-        geoFire.removeLocation(currentUser);
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+                taxiDriverId = snapshot.getKey();
 
+                taxiDrivers.remove(taxiDriverId);
+                updateTaxiDriversLocations(taxiDrivers,map);
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.w(TAG, "loadPost:onCancelled", error.toException());
+            }
+        });
     }
 }

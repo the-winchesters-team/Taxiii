@@ -1,108 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.NavigationBarActivity"
-    tools:openDrawer="start">
+    android:orientation="vertical"
+    android:gravity="center">
 
-    <com.google.android.material.navigation.NavigationView
-        android:id="@+id/nav_view"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:background="@drawable/curve_right_side"
-        android:backgroundTint="@color/white"
-        app:headerLayout="@layout/header"
-        app:itemBackground="@drawable/item_background"
-        app:itemIconTint="@color/black"
-        app:itemTextColor="@color/black"
-        app:menu="@menu/main_menu" />
-
-    <ScrollView
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:context=".activity.taxi_driver.TaxiDriverMapActivity" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/myBlue"
-            tools:context=".activity.taxi_driver.TaxiDriverMapActivity">
+    <Button
+        android:id="@+id/return_back"
+        android:layout_width="70dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:background="#45FFFFFF"
+        android:text="@string/return_back"
+        android:textColor="#000000" />
 
-
-            <fragment
-                android:id="@+id/map"
-                android:name="com.google.android.gms.maps.SupportMapFragment"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-            <RelativeLayout
-                android:id="@+id/nav_bar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="40dp"
-                android:layout_marginTop="40dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <com.google.android.material.imageview.ShapeableImageView
-                    android:id="@+id/map_user_settings"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_marginHorizontal="10dp"
-                    android:background="@color/myBlue"
-                    android:padding="4dp"
-                    android:src="@drawable/ic_profile"
-                    app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
-                    app:strokeColor="@color/myBlue"
-                    app:strokeWidth="3dp" />
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/search_bar"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_marginHorizontal="10dp"
-                    android:layout_toStartOf="@id/map_logout"
-                    android:layout_toEndOf="@id/map_user_settings"
-
-                    android:background="@drawable/search_bar_bg"
-                    android:drawableStart="@drawable/ic_baseline_search_24"
-                    android:drawablePadding="15dp"
-                    android:ems="10"
-                    android:fontFamily="@font/inter_medium"
-                    android:gravity="center_vertical"
-                    android:hint="@string/where_do_you_want_to_go"
-                    android:inputType="textPersonName"
-                    android:paddingVertical="10dp"
-                    android:textColor="@color/black"
-
-                    android:textColorHint="@color/myGrey" />
-
-                <com.google.android.material.imageview.ShapeableImageView
-                    android:id="@+id/map_logout"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginHorizontal="10dp"
-
-                    android:background="@color/myBlue"
-                    android:layout="@id/search_bar"
-                    android:padding="4dp"
-                    android:src="@drawable/ic_logout"
-                    app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
-                    app:strokeColor="@color/myBlue"
-                    app:strokeWidth="3dp" />
-            </RelativeLayout>
-
-
-
-            <include layout="@layout/toolbar" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
-
-</androidx.drawerlayout.widget.DrawerLayout>
+</RelativeLayout >

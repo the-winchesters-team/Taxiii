@@ -1,12 +1,14 @@
 package the.winchesters.taxiii.model;
 
 public class User {
+    private Role role;
     private String username;
     private String firstName;
     private String lastName;
     private String phoneNumber;
 
-    public User(String username, String firstName, String lastName, String phoneNumber) {
+    public User(Role role,String username, String firstName, String lastName, String phoneNumber) {
+        this.role = role;
         this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;

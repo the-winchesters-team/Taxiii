@@ -14,6 +14,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import the.winchesters.taxiii.R;
+import the.winchesters.taxiii.activity.client.ClientMapActivity;
 import the.winchesters.taxiii.activity.taxi_driver.TaxiDriverMapActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -33,12 +34,13 @@ public class MainActivity extends AppCompatActivity {
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
+//                FirebaseAuth.getInstance().signOut();
                 FirebaseUser currentUser = mAuth.getCurrentUser();
                 Intent intent;
                 if (currentUser != null) {
-                    //TODO : check role
-                    intent = new Intent(MainActivity.this, TaxiDriverMapActivity.class);
+                    intent = new Intent(MainActivity.this, ClientMapActivity.class);
                 }else {
+
                     intent = new Intent(MainActivity.this, LoginOrSignUpActivity.class);
                 }
                 startActivity(intent);
