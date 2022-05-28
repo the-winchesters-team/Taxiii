@@ -1,11 +1,13 @@
 package the.winchesters.taxiii.model;
 
+import static the.winchesters.taxiii.model.Role.TAXI_DRIVER;
+
 import com.google.android.gms.maps.model.LatLng;
 
 public class TaxiDriver extends User {
     private MyLatLng location;
     public TaxiDriver(String username, String firstName, String lastName, String phoneNumber) {
-        super(username, firstName, lastName, phoneNumber);
+        super(TAXI_DRIVER,username, firstName, lastName, phoneNumber);
     }
 
     public TaxiDriver() {
@@ -13,7 +15,7 @@ public class TaxiDriver extends User {
     }
 
     public TaxiDriver(String username, String firstName, String lastName, String phoneNumber, MyLatLng location) {
-        super(username, firstName, lastName, phoneNumber);
+        super(TAXI_DRIVER,username, firstName, lastName, phoneNumber);
         this.location = location;
     }
 

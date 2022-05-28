@@ -71,13 +71,12 @@ public class TaxiDriverSignUpActivity extends AppCompatActivity {
                 Toast.makeText(TaxiDriverSignUpActivity.this, String.format("user %s registered", user_id), Toast.LENGTH_SHORT).show();
                 DatabaseReference user_db = FirebaseDatabase.getInstance().getReference()
                         .child("User")
-                        .child("TaxiDriver")
                         .child(user_id);
 
                 User user = new TaxiDriver(username,firstName,lastName,number);
                 user_db.setValue(user);
 
-                Intent intent = new Intent(TaxiDriverSignUpActivity.this, NavigationBarActivity.class);
+                Intent intent = new Intent(TaxiDriverSignUpActivity.this, TaxiDriverMapActivity.class);
                 startActivity(intent);
                 finish();
 
