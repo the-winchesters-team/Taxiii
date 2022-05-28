@@ -33,6 +33,8 @@
         <entry key="..\:/Users/Destock afric/Documents/taxiProject/code/app/src/main/res/menu/main_menu.xml" value="0.1796875" />
         <entry key="..\:/Users/Destock afric/Documents/taxiProject/code/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
         <entry key="..\:/Users/Destock afric/Documents/taxiProject/code/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/btn_bg.xml" value="0.17" />
+        <entry key="app/src/main/res/drawable/green_btn_bg.xml" value="0.17" />
       </map>
     </option>
   </component>

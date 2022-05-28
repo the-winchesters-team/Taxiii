@@ -33,6 +33,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.location.LocationRequest;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -107,9 +108,10 @@ public class TaxiDriverMapActivity extends FragmentActivity implements OnMapRead
                 )
         );
         map.animateCamera(CameraUpdateFactory.zoomTo(10));
-        String currentUser = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        if(currentUser==null) return;
         DatabaseReference refAvailable = FirebaseDatabase.getInstance().getReference("driversAvailable");
-        DatabaseReference ref = refAvailable.child(currentUser);
+        DatabaseReference ref = refAvailable.child(currentUser.getUid());
         ref.setValue(new LatLng(
                 lastKnownLocation.getLatitude(),
                 lastKnownLocation.getLongitude()

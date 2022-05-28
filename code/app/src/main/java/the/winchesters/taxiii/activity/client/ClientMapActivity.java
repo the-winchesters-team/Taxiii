@@ -6,6 +6,7 @@ import static the.winchesters.taxiii.utils.MyMapUtils.getMapBuilder;
 import static the.winchesters.taxiii.utils.MyMapUtils.updateTaxiDriversLocations;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -62,6 +63,8 @@ public class ClientMapActivity extends FragmentActivity implements OnMapReadyCal
     private Location lastKnownLocation;
     private GoogleApiClient googleApiClient;
     private Map<String, TaxiDriver> taxiDrivers= new HashMap<>();
+
+    @SuppressLint({"SetTextI18n", "UseCompatLoadingForDrawables"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,9 +80,15 @@ public class ClientMapActivity extends FragmentActivity implements OnMapReadyCal
             Intent intent = new Intent(ClientMapActivity.this,LoginOrSignUpActivity.class);
             startActivity(intent);
         });
-        View requestTaxiBtn = findViewById(R.id.request_taxi);
-        requestTaxiBtn.setOnClickListener(view -> requestTaxi());
-        startTaxiDriverListener();
+        Button requestTaxiBtn = (Button) findViewById(R.id.request_taxi);
+        requestTaxiBtn.setOnClickListener(view -> {
+            Button btnView = (Button) view;
+            requestTaxi();
+            btnView.setText("Sent");
+            btnView.setBackground(getResources().getDrawable(R.drawable.green_btn_bg));
+        });
+            startTaxiDriverListener();
+
     }
 
     private void requestTaxi() {
