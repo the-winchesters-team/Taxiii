@@ -2,6 +2,7 @@ package the.winchesters.taxiii.activity.taxi_driver;
 
 import static android.content.ContentValues.TAG;
 import static the.winchesters.taxiii.utils.MyMapUtils.checkLocationPermission;
+import static the.winchesters.taxiii.utils.MyMapUtils.goToLocation;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -188,8 +189,6 @@ public class TaxiDriverMapActivity extends FragmentActivity implements OnMapRead
 
     public void showRequestPopUp(View view,String username,LatLng latLng) {
 
-
-
         // inflate the layout of the popup window
         LayoutInflater inflater = (LayoutInflater)
                 getSystemService(LAYOUT_INFLATER_SERVICE);
@@ -201,7 +200,7 @@ public class TaxiDriverMapActivity extends FragmentActivity implements OnMapRead
         Button getRequestLocalisationBtn = (Button)popupView.findViewById(R.id.get_request_location);
 
         getRequestLocalisationBtn.setOnClickListener(v->{
-
+            goToLocation(map,latLng);
         });
 
         // create the popup window
