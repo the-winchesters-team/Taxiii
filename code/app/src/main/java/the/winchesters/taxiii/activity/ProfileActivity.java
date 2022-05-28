@@ -55,7 +55,7 @@ public class ProfileActivity extends NavigationBarActivity {
         TextView numberView = (TextView)findViewById(R.id.profile_phone_number);
 
         String userId = Objects.requireNonNull(mAuth.getCurrentUser()).getUid();
-        DatabaseReference userDbRef = FirebaseDatabase.getInstance().getReference(String.format("User/Client/%s",userId));
+        DatabaseReference userDbRef = FirebaseDatabase.getInstance().getReference(String.format("User/%s",userId));
         userDbRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {

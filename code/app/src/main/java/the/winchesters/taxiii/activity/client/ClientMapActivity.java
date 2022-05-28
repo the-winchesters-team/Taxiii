@@ -34,6 +34,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -82,43 +83,52 @@ public class ClientMapActivity extends FragmentActivity implements OnMapReadyCal
     }
 
     private void requestTaxi() {
-        TaxiDriver taxiDriver = getMostApproximateTD();
-        taxiDriver.setPhoneNumber("0658040125");
-        Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + taxiDriver.getPhoneNumber()));
-        if (ContextCompat.checkSelfPermission(this,
-                Manifest.permission.CALL_PHONE)
-                != PackageManager.PERMISSION_GRANTED) {
-
-            ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.CALL_PHONE}, 1);
-
-            // MY_PERMISSIONS_REQUEST_CALL_PHONE is an
-            // app-defined int constant. The callback method gets the
-            // result of the request.
-        } else {
-            //You already have permission
-            try {
-                startActivity(intent);
-            } catch(SecurityException e) {
-                e.printStackTrace();
-            }
-        }
+        Map.Entry<String,TaxiDriver> taxiDriver = getMostApproximateTD();
+//        taxiDriver.setPhoneNumber("0658040125");
+//        Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + taxiDriver.getPhoneNumber()));
+//        if (ContextCompat.checkSelfPermission(this,
+//                Manifest.permission.CALL_PHONE)
+//                != PackageManager.PERMISSION_GRANTED) {
+//
+//            ActivityCompat.requestPermissions(this,
+//                    new String[]{Manifest.permission.CALL_PHONE}, 1);
+//
+//        } else {
+//            //You already have permission
+//            try {
+//                startActivity(intent);
+//            } catch(SecurityException e) {
+//                e.printStackTrace();
+//            }
+//        }
+        FirebaseUser user =  FirebaseAuth.getInstance().getCurrentUser();
+        assert user != null;
+        DatabaseReference requestRef = FirebaseDatabase.getInstance().getReference()
+                .child("User")
+                .child(taxiDriver.getKey())
+                .child("request")
+                .child(user.getUid());
+        requestRef.setValue(new LatLng(
+                        lastKnownLocation.getLatitude(),
+                        lastKnownLocation.getLongitude()
+                )
+        );
     }
 
-    private TaxiDriver getMostApproximateTD(){
+    private Map.Entry<String,TaxiDriver> getMostApproximateTD(){
 
-        TaxiDriver approximateTD = null;
+        Map.Entry<String,TaxiDriver> approximateTD = null;
         float distance=100000000000f;
         float newDistance;
         float[] results=new float[4];
 
-        for(TaxiDriver taxiDriver:taxiDrivers.values()){
+        for(Map.Entry<String,TaxiDriver> taxiDriver:taxiDrivers.entrySet()){
             Location.distanceBetween(
                     lastKnownLocation
                             .getLatitude(),
                     lastKnownLocation.getLongitude(),
-                    taxiDriver.getLocation().getLatitude(),
-                    taxiDriver.getLocation().getLongitude(),
+                    taxiDriver.getValue().getLocation().getLatitude(),
+                    taxiDriver.getValue().getLocation().getLongitude(),
                     results
                     );
 

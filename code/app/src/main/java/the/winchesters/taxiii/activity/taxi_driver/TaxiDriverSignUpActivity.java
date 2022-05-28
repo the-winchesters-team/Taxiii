@@ -18,7 +18,6 @@ import java.util.Objects;
 import the.winchesters.taxiii.R;
 import the.winchesters.taxiii.activity.LoginOrSignUpActivity;
 import the.winchesters.taxiii.activity.NavigationBarActivity;
-import the.winchesters.taxiii.activity.client.ClientMapActivity;
 import the.winchesters.taxiii.model.TaxiDriver;
 import the.winchesters.taxiii.model.User;
 
@@ -26,10 +25,12 @@ public class TaxiDriverSignUpActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
+
 
         mAuth = FirebaseAuth.getInstance();
 
