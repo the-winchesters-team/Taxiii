@@ -70,8 +70,8 @@ public class ClientMapActivity extends FragmentActivity implements OnMapReadyCal
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.client_map);
         mapFragment.getMapAsync(this);
-        TextView returnBack = (TextView) findViewById(R.id.client_logout);
-        returnBack.setOnClickListener(view -> {
+        TextView logOutBtn = (TextView) findViewById(R.id.client_logout);
+        logOutBtn.setOnClickListener(view -> {
             FirebaseAuth.getInstance().signOut();
             Intent intent = new Intent(ClientMapActivity.this,LoginOrSignUpActivity.class);
             startActivity(intent);

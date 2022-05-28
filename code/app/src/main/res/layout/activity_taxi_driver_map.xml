@@ -14,13 +14,13 @@
         tools:context=".activity.taxi_driver.TaxiDriverMapActivity" />
 
     <Button
-        android:id="@+id/return_back"
+        android:id="@+id/taxi_driver_logout"
         android:layout_width="70dp"
         android:layout_height="50dp"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
         android:background="#45FFFFFF"
-        android:text="@string/return_back"
+        android:text="@string/log_out"
         android:textColor="#000000" />
 
 </RelativeLayout >

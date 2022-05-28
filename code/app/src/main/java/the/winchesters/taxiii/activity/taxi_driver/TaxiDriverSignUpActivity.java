@@ -16,7 +16,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.Objects;
 
 import the.winchesters.taxiii.R;
+import the.winchesters.taxiii.activity.LoginOrSignUpActivity;
 import the.winchesters.taxiii.activity.NavigationBarActivity;
+import the.winchesters.taxiii.activity.client.ClientMapActivity;
 import the.winchesters.taxiii.model.TaxiDriver;
 import the.winchesters.taxiii.model.User;
 
@@ -32,6 +34,13 @@ public class TaxiDriverSignUpActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         initializeComponents();
+
+        TextView logOutBtn = (TextView) findViewById(R.id.taxi_driver_logout);
+        logOutBtn.setOnClickListener(view -> {
+            FirebaseAuth.getInstance().signOut();
+            Intent intent = new Intent(TaxiDriverSignUpActivity.this, LoginOrSignUpActivity.class);
+            startActivity(intent);
+        });
     }
 
     private void initializeComponents() {
