@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Location;
 import android.os.Bundle;
 import android.view.View;
 
@@ -71,5 +72,20 @@ public class MyMapUtils {
                     .title("Taxi : "+taxiDriver.getFirstName() + " " + taxiDriver.getLastName())
             );
         }
+    }
+
+    public static void goToLocation(GoogleMap map, LatLng latLng){
+        map.addMarker(new MarkerOptions()
+                .position(
+                        latLng
+                )
+                .title("Client")
+        );
+        map.moveCamera(
+                CameraUpdateFactory.newLatLng(
+                        latLng
+                )
+        );
+        map.animateCamera(CameraUpdateFactory.zoomTo(10));
     }
 }
