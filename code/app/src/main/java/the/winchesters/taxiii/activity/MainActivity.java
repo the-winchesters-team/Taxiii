@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             User user = snapshot.getValue(User.class);
-                            assert user != null;
+                            if(user==null) FirebaseAuth.getInstance().signOut();
                             Intent intent;
                             switch (user.getRole()){
                                 case CLIENT :

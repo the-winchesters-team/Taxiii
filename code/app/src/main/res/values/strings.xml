@@ -33,4 +33,5 @@
     <string name="logout">logout</string>
     <string name="return_back">return back</string>
     <string name="request_taxi">request taxi</string>
+    <string name="log_out">Log Out</string>
 </resources>

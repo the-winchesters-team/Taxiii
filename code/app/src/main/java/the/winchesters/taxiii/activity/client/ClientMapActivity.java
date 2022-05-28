@@ -33,6 +33,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -69,10 +70,11 @@ public class ClientMapActivity extends FragmentActivity implements OnMapReadyCal
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.client_map);
         mapFragment.getMapAsync(this);
-        TextView returnBack = (TextView) findViewById(R.id.logout);
+        TextView returnBack = (TextView) findViewById(R.id.client_logout);
         returnBack.setOnClickListener(view -> {
-            super.onBackPressed();
-
+            FirebaseAuth.getInstance().signOut();
+            Intent intent = new Intent(ClientMapActivity.this,LoginOrSignUpActivity.class);
+            startActivity(intent);
         });
         View requestTaxiBtn = findViewById(R.id.request_taxi);
         requestTaxiBtn.setOnClickListener(view -> requestTaxi());
