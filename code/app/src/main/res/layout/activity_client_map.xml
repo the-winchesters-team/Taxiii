@@ -16,22 +16,26 @@
     <Button
         android:id="@+id/client_logout"
         android:layout_width="70dp"
-        android:layout_height="50dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="20dp"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:background="#45FFFFFF"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/round"
+        android:fontFamily="@font/inter_black"
         android:text="@string/log_out"
-        android:textColor="#000000" />
+        android:textColor="#000000"
+        android:textSize="10sp" />
 
     <Button
         android:id="@+id/request_taxi"
-        android:layout_width="100dp"
+        android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_marginTop="10dp"
-        android:background="@color/myBlue"
+        android:paddingHorizontal="20dp"
+        android:background="@drawable/btn_bg"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="30dp"
         android:text="@string/request_taxi"
         android:textColor="@color/white" />
 

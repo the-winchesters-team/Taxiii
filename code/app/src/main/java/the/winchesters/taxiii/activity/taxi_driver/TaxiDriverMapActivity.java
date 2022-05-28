@@ -84,7 +84,7 @@ public class TaxiDriverMapActivity extends FragmentActivity implements OnMapRead
 
     @Override
     public void onLocationChanged(@NonNull Location location) {
-        showRequestPopUp(findViewById(R.id.taxi_driver_logout),"this a request");
+//        showRequestPopUp(findViewById(R.id.taxi_driver_logout),"this a request");
         lastKnownLocation = location;
         Log.d("debug", location.toString());
         map.moveCamera(

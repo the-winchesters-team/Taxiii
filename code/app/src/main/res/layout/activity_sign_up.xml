@@ -93,7 +93,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="30dp"
-                android:layout_marginTop="36dp"
+                android:layout_marginTop="20dp"
                 android:background="@drawable/edit_text_style2"
                 android:drawableStart="@drawable/email"
                 android:drawablePadding="15dp"
@@ -113,7 +113,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="30dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="20dp"
 
                 android:background="@drawable/edit_text_style2"
                 android:drawableStart="@drawable/email"
@@ -132,7 +132,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="30dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="20dp"
 
                 android:background="@drawable/edit_text_style2"
                 android:drawableStart="@drawable/email"
@@ -153,7 +153,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="30dp"
-                android:layout_marginTop="36dp"
+                android:layout_marginTop="20dp"
 
 
                 android:background="@drawable/edit_text_style2"
@@ -174,7 +174,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="30dp"
                 android:textColorHint="@color/myGrey"
-                android:layout_marginTop="36dp"
+                android:layout_marginTop="20dp"
 
                 app:passwordToggleEnabled="true">
                 <!-- TODO : Hide layoutEditText theme  and show eye Icon-->
@@ -189,6 +189,7 @@
                     android:drawablePadding="15dp"
                     android:fontFamily="@font/inter_medium"
                     android:hint="Password"
+
                     android:paddingVertical="10dp"
                     android:textColor="@color/black"
                     android:textColorHint="@color/myGrey"
@@ -200,7 +201,7 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/sign_up_confirm_password"
-                android:layout_marginTop="36dp"
+                android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="30dp"
