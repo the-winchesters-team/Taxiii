@@ -20,7 +20,8 @@
         android:layout_marginStart="20dp"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="20dp"
-        android:background="#45FFFFFF"
+        android:background="@drawable/round"
+
 
 
         android:fontFamily="@font/inter_black"
@@ -40,6 +41,22 @@
         android:layout_marginBottom="30dp"
         android:text="@string/request_taxi"
         android:textColor="@color/white" />
+
+    <Button
+        android:id="@+id/btn_profile"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/round"
+        android:fontFamily="@font/inter_black"
+        android:paddingVertical="25dp"
+        android:text="Profile"
+        android:textSize="13sp"
+
+        />
 
 
 </RelativeLayout >

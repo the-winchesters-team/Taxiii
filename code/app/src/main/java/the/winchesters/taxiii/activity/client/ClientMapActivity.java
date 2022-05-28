@@ -50,6 +50,8 @@ import the.winchesters.taxiii.R;
 import the.winchesters.taxiii.activity.LoginFormActivity;
 import the.winchesters.taxiii.activity.LoginOrSignUpActivity;
 import the.winchesters.taxiii.activity.MainActivity;
+import the.winchesters.taxiii.activity.ProfileActivity;
+import the.winchesters.taxiii.activity.taxi_driver.TaxiDriverSignUpActivity;
 import the.winchesters.taxiii.databinding.ActivityClientMapBinding;
 import the.winchesters.taxiii.databinding.ActivityTaxiDriverMapBinding;
 import the.winchesters.taxiii.model.MyLatLng;
@@ -88,6 +90,15 @@ public class ClientMapActivity extends FragmentActivity implements OnMapReadyCal
             btnView.setBackground(getResources().getDrawable(R.drawable.green_btn_bg));
         });
             startTaxiDriverListener();
+        Button button = (Button) findViewById(R.id.btn_profile);
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent  = new Intent(ClientMapActivity.this, ProfileActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
