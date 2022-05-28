@@ -95,23 +95,22 @@
         app:layout_constraintTop_toBottomOf="@+id/forgotPasswordTV" />
 
 
-    <com.google.android.gms.common.SignInButton
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_google"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:backgroundTint="@color/white"
+
         android:src="@drawable/google"
-        android:text="google"
-        android:textColor="#000000"
-        app:cornerRadius="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.208"
+        app:layout_constraintHorizontal_bias="0"
+        android:layout_marginLeft="60dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signinButton"
         app:layout_constraintVertical_bias="0.555" />
-
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_facebook"
         android:layout_width="wrap_content"
@@ -137,7 +136,8 @@
         android:src="@drawable/twitter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.816"
+        app:layout_constraintHorizontal_bias="1"
+        android:layout_marginRight="60dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signinButton"
         app:layout_constraintVertical_bias="0.555" />
