@@ -20,7 +20,9 @@
         android:layout_marginStart="20dp"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="20dp"
-        android:background="@drawable/round"
+        android:background="#45FFFFFF"
+
+
         android:fontFamily="@font/inter_black"
         android:text="@string/log_out"
         android:textColor="#000000"

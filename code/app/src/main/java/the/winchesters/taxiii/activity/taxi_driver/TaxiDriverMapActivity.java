@@ -8,6 +8,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentActivity;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
@@ -40,7 +42,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.Objects;
 
 import the.winchesters.taxiii.R;
+import the.winchesters.taxiii.activity.LoginOrSignUpActivity;
 import the.winchesters.taxiii.databinding.ActivityTaxiDriverMapBinding;
+import the.winchesters.taxiii.model.MyLatLng;
 
 public class TaxiDriverMapActivity extends FragmentActivity implements OnMapReadyCallback, LocationListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
@@ -61,6 +65,13 @@ public class TaxiDriverMapActivity extends FragmentActivity implements OnMapRead
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        TextView logOutBtn = (TextView) findViewById(R.id.taxi_driver_logout);
+        logOutBtn.setOnClickListener(view -> {
+            FirebaseAuth.getInstance().signOut();
+            Intent intent = new Intent(TaxiDriverMapActivity.this, LoginOrSignUpActivity.class);
+            startActivity(intent);
+        });
     }
 
     @Override
@@ -85,7 +96,6 @@ public class TaxiDriverMapActivity extends FragmentActivity implements OnMapRead
 
     @Override
     public void onLocationChanged(@NonNull Location location) {
-//        showRequestPopUp(findViewById(R.id.taxi_driver_logout),"this a request");
         lastKnownLocation = location;
         Log.d("debug", location.toString());
         map.moveCamera(
@@ -105,6 +115,7 @@ public class TaxiDriverMapActivity extends FragmentActivity implements OnMapRead
                 lastKnownLocation.getLongitude()
             )
         );
+
 //        GeoFire geoFireAvailable = new GeoFire(refAvailable);
 //        GeoLocation updatedLocation = new GeoLocation(location.getLatitude(),location.getLongitude());
 //        geoFireAvailable.setLocation(currentUser,updatedLocation,(key,err)->{});
@@ -158,16 +169,20 @@ public class TaxiDriverMapActivity extends FragmentActivity implements OnMapRead
 
         requestsRef.addChildEventListener(new ChildEventListener() {
 
-            View view = findViewById(R.id.taxi_driver_logout);
+            final View view = findViewById(R.id.taxi_driver_logout);
 
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-//                showRequestPopUp(view,"this a request");
+                MyLatLng location = snapshot.getValue(MyLatLng.class);
+                assert location != null;
+                showRequestPopUp(view,new LatLng(location.getLatitude(),location.getLongitude()));
             }
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
+                MyLatLng location = snapshot.getValue(MyLatLng.class);
+                assert location != null;
+                showRequestPopUp(view,new LatLng(location.getLatitude(),location.getLongitude()));
             }
 
             @Override
@@ -187,7 +202,8 @@ public class TaxiDriverMapActivity extends FragmentActivity implements OnMapRead
         });
     }
 
-    public void showRequestPopUp(View view,String username,LatLng latLng) {
+    @SuppressLint("SetTextI18n")
+    public void showRequestPopUp(View view, LatLng latLng) {
 
         // inflate the layout of the popup window
         LayoutInflater inflater = (LayoutInflater)
@@ -195,7 +211,7 @@ public class TaxiDriverMapActivity extends FragmentActivity implements OnMapRead
         View popupView = inflater.inflate(R.layout.request_popup, null);
 
         TextView textView = popupView.findViewById(R.id.popup_text);
-        textView.setText(String.format("You have a request from %s",username));
+        textView.setText("You have a ride request");
 
         Button getRequestLocalisationBtn = (Button)popupView.findViewById(R.id.get_request_location);
 

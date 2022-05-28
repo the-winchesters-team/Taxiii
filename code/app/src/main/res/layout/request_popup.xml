@@ -12,13 +12,17 @@
         android:layout_centerInParent="true"
         android:layout_margin="30dp"
         android:textSize="22sp"
-        android:text="This is a popup window."/>
+        android:textColor="@color/white"
+        android:text="This is a popup window."
+        android:layout_alignParentTop="true"/>
+
     <Button
         android:id="@+id/get_request_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/popup_text"
         android:text="@string/get_request_location"
-        />
+        android:layout_centerHorizontal="true"/>
 
 
 </RelativeLayout>

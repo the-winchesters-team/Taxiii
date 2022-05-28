@@ -35,13 +35,6 @@ public class TaxiDriverSignUpActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         initializeComponents();
-
-        TextView logOutBtn = (TextView) findViewById(R.id.taxi_driver_logout);
-        logOutBtn.setOnClickListener(view -> {
-            FirebaseAuth.getInstance().signOut();
-            Intent intent = new Intent(TaxiDriverSignUpActivity.this, LoginOrSignUpActivity.class);
-            startActivity(intent);
-        });
     }
 
     private void initializeComponents() {
